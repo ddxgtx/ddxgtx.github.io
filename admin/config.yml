@@ -4,7 +4,7 @@ backend:
   branch: main
   base_url: https://ddxgtx.fun
   auth_type: pkce
-  app_id: 
+  app_id: Ov23liZILsJf1orKbmYP
 
 media_folder: source/img
 public_folder: /img
