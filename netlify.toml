@@ -1,6 +1,0 @@
-[build]
-  publish = "public"
-  command = "npx hexo generate"
-
-[build.environment]
-  NODE_VERSION = "22"
