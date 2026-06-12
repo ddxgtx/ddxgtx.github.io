@@ -242,6 +242,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     gap: 0.6rem;
 }
 .quote-box i { color: var(--accent); opacity: 0.4; font-size: 1.1rem; flex-shrink: 0; }
+.quote-center {
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
 
 /* ===== Tech Stack ===== */
 .tech-categories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }

@@ -66,9 +66,29 @@
                         <p>{{ card.desc }}</p>
                     </div>
                 </div>
-                <div class="quote-box">
+                <div class="quote-box quote-center">
                     <i class="ri-double-quotes-l"></i>
-                    <p>{{ hitokoto }}</p>
+                    <p>纵使困顿难行，亦当砥砺奋进。 —— 三国杀</p>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section id="experience" class="section" :class="{ visible: visibleSections.experience }">
+                <div class="section-header">
+                    <i class="ri-time-line"></i>
+                    <h2>Experience</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="timeline">
+                    <div v-for="(item, index) in experience" :key="index" class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">{{ item.date }}</div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="timeline-company">{{ item.company }}</p>
+                            <p class="timeline-desc">{{ item.desc }}</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -116,26 +136,6 @@
                         <p class="project-desc">{{ project.desc }}</p>
                         <div class="project-tags">
                             <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Experience -->
-            <section id="experience" class="section" :class="{ visible: visibleSections.experience }">
-                <div class="section-header">
-                    <i class="ri-time-line"></i>
-                    <h2>Experience</h2>
-                    <span class="section-line"></span>
-                </div>
-                <div class="timeline">
-                    <div v-for="(item, index) in experience" :key="index" class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">{{ item.date }}</div>
-                            <h3>{{ item.title }}</h3>
-                            <p class="timeline-company">{{ item.company }}</p>
-                            <p class="timeline-desc">{{ item.desc }}</p>
                         </div>
                     </div>
                 </div>
