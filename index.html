@@ -557,15 +557,19 @@
                 const navbar = document.getElementById('navbar');
                 const landing = document.getElementById('landing');
                 const scrollIndicator = document.getElementById('scrollIndicator');
+                const wrap = document.querySelector('.wrap');
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
                     const landingHeight = landing.offsetHeight;
                     if (scrollY > landingHeight * 0.3) {
                         navbar.classList.add('visible');
                         scrollIndicator.classList.add('hidden');
+                        wrap.style.opacity = '0';
+                        wrap.style.pointerEvents = 'none';
                     } else {
                         navbar.classList.remove('visible');
                         scrollIndicator.classList.remove('hidden');
+                        wrap.style.opacity = '1';
                     }
                 });
             };
