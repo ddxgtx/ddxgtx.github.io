@@ -64,12 +64,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .wrap h1 {
     color: #fff;
     text-align: center;
-    font-family: sans-serif;
+    font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: 8em;
-    font-weight: 700;
+    font-weight: 400;
     animation: animate 0.5s linear infinite;
     margin: 0;
-    line-height: 1.1;
+    line-height: 1.2;
+    letter-spacing: 12px;
 }
 .wrap h2 {
     font-size: 1.3rem;
