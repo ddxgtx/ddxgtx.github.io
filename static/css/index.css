@@ -30,10 +30,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* ===== Landing Section ===== */
 .landing-section {
-    position: relative;
     width: 100%;
     height: 100vh;
-    z-index: 2;
 }
 #ink-canvas {
     position: fixed;
