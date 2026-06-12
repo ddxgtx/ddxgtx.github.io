@@ -57,7 +57,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 }
 .main {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 0;
     right: 0;
     transform: translateY(-50%);
