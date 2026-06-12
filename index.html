@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ddxgtx | Developer</title>
-    <meta name="description" content="ddxgtx的个人主页，热爱技术，热爱生活">
-    <meta name="keywords" content="ddxgtx,developer,homepage">
+    <title>邓栋旭 | 计算机视觉 & 深度学习</title>
+    <meta name="description" content="邓栋旭的个人主页，沈阳建筑大学硕士，计算机视觉与深度学习研究">
+    <meta name="keywords" content="邓栋旭,计算机视觉,深度学习,YOLO,SMPL,3D人体姿态估计">
     <meta name="theme-color" content="#0d1117">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
@@ -40,7 +40,7 @@
         <div class="app-container">
             <!-- Navbar (appears after scroll) -->
             <nav class="navbar" id="navbar">
-                <div class="nav-brand">&lt;/&gt; ddxgtx</div>
+                <div class="nav-brand">&lt;/&gt; 邓栋旭</div>
                 <div class="nav-links">
                     <a v-for="link in navLinks" :key="link.id" :href="'#' + link.id">{{ link.title }}</a>
                 </div>
@@ -138,6 +138,46 @@
                 </div>
             </section>
 
+            <!-- Awards -->
+            <section id="awards" class="section" :class="{ visible: visibleSections.awards }">
+                <div class="section-header">
+                    <i class="ri-award-fill"></i>
+                    <h2>荣誉奖项</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="awards-grid">
+                    <div class="award-item national">
+                        <span class="award-badge">🏆 国家级</span>
+                        <span class="award-name">中国计算机设计大赛 — 一等奖</span>
+                    </div>
+                    <div class="award-item national">
+                        <span class="award-badge">🏆 国家级</span>
+                        <span class="award-name">中国计算机博弈大赛 — 一等奖</span>
+                    </div>
+                    <div class="award-item provincial">
+                        <span class="award-badge">🥇 省级</span>
+                        <span class="award-name">大学生智能技术应用大赛 — 一等奖</span>
+                    </div>
+                    <div class="award-item provincial">
+                        <span class="award-badge">🥈 省级</span>
+                        <span class="award-name">中国计算机博弈大赛 — 二等奖</span>
+                    </div>
+                    <div class="award-item provincial">
+                        <span class="award-badge">🥉 省级</span>
+                        <span class="award-name">中国计算机设计大赛 — 三等奖</span>
+                    </div>
+                    <div class="award-item provincial">
+                        <span class="award-badge">🥉 省级</span>
+                        <span class="award-name">辽宁省工业设计大赛 — 三等奖</span>
+                    </div>
+                </div>
+                <div class="cert-box">
+                    <span class="cert-item"><i class="ri-verified-badge-fill"></i> LMCC（CCF大模型能力认证）二级</span>
+                    <span class="cert-item"><i class="ri-translate-2"></i> 英语四级证书</span>
+                    <span class="cert-item"><i class="ri-medal-fill"></i> 优秀学生奖学金（二/三等奖）</span>
+                </div>
+            </section>
+
             <!-- Stats -->
             <section id="stats" class="section section-stats" :class="{ visible: visibleSections.stats }">
                 <div class="stats-grid">
@@ -160,20 +200,21 @@
             <footer id="contact" class="footer">
                 <div class="footer-content">
                     <div class="footer-info">
-                        <h3>ddxgtx</h3>
-                        <p>热爱技术，热爱生活</p>
+                        <h3>邓栋旭</h3>
+                        <p>沈阳建筑大学 · 电子信息（计算机技术）硕士</p>
+                        <p>2027届应届生 · 计算机视觉 & 深度学习</p>
                     </div>
                     <div class="footer-contact">
-                        <h4>Connect</h4>
+                        <h4>联系方式</h4>
                         <div class="contact-items">
-                            <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank">
-                                <i :class="social.icon"></i> {{ social.name }}
-                            </a>
+                            <a href="tel:18909789601"><i class="ri-phone-fill"></i> 18909789601</a>
+                            <a href="mailto:ddxgtx@Gmail.com"><i class="ri-mail-fill"></i> ddxgtx@Gmail.com</a>
+                            <a href="https://github.com/ddxgtx" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p class="copyright-main">&copy; 2026 ddxgtx · All Rights Reserved</p>
+                    <p class="copyright-main">&copy; 2026 邓栋旭 · All Rights Reserved</p>
                     <p class="copyright-sub">
                         <span>Powered by Vue 3</span>
                         <span class="divider">|</span>
@@ -314,15 +355,17 @@
             ]);
 
             const socialLinks = ref([
-                { name: 'GitHub', icon: 'ri-github-fill', url: 'https://github.com/ddxgtx' }
+                { name: 'GitHub', icon: 'ri-github-fill', url: 'https://github.com/ddxgtx' },
+                { name: 'Email', icon: 'ri-mail-fill', url: 'mailto:ddxgtx@Gmail.com' },
+                { name: '微信', icon: 'ri-wechat-fill', url: '#' }
             ]);
 
             const about = reactive({
-                intro: '热爱技术，热爱生活。专注于桌面应用开发、Chrome 扩展开发和 AI 应用。GitHub Pro 用户，开源爱好者。',
+                intro: '沈阳建筑大学电子信息（计算机技术）硕士，2027届应届生。深耕计算机视觉与深度学习领域，熟练掌握 YOLO 目标检测、SMPL 人体建模、RAG 智能问答等核心技术。多次获得国家级竞赛一等奖，具备扎实的算法研究与工程落地能力。',
                 cards: [
-                    { icon: 'ri-steam-fill', title: '桌面开发', desc: '精通 C# / .NET / WPF，开发了 Steam 多账号管理工具 SteamSwitch' },
-                    { icon: 'ri-chrome-fill', title: '浏览器扩展', desc: 'Chrome Extension 开发，AI-JobHunter 智能求职助手' },
-                    { icon: 'ri-robot-fill', title: 'AI 应用', desc: '将 AI 技术应用于实际工具，集成 OpenAI / DeepSeek API' }
+                    { icon: 'ri-brain-fill', title: '深度学习', desc: '深耕计算机视觉，熟练掌握 YOLO、Dlib、SMPL 等核心算法' },
+                    { icon: 'ri-code-s-fill', title: '编程开发', desc: '精通 Python，熟练 C++/Java，具备全栈开发能力' },
+                    { icon: 'ri-award-fill', title: '竞赛获奖', desc: '国家一等奖 2 项，省级奖项 4 项，CCF 大模型能力认证' }
                 ]
             });
 
@@ -330,57 +373,73 @@
                 {
                     name: '编程语言', icon: 'ri-code-s-fill',
                     items: [
-                        { name: 'C#', level: 90, levelName: '精通' },
-                        { name: 'JavaScript', level: 85, levelName: '熟练' },
-                        { name: 'Python', level: 75, levelName: '掌握' },
-                        { name: 'HTML/CSS', level: 80, levelName: '熟练' }
+                        { name: 'Python', level: 95, levelName: '精通' },
+                        { name: 'C++', level: 80, levelName: '熟练' },
+                        { name: 'Java', level: 75, levelName: '熟练' },
+                        { name: 'Linux', level: 80, levelName: '熟练' }
                     ]
                 },
                 {
-                    name: '技术栈', icon: 'ri-tools-fill',
+                    name: '深度学习 & CV', icon: 'ri-brain-fill',
                     items: [
-                        { name: '.NET / WPF', level: 90, levelName: '精通' },
-                        { name: 'Chrome Extension', level: 85, levelName: '熟练' },
+                        { name: 'YOLO 目标检测', level: 90, levelName: '精通' },
+                        { name: 'SMPL 人体建模', level: 85, levelName: '熟练' },
+                        { name: 'OpenCV', level: 85, levelName: '熟练' },
+                        { name: 'LangChain/RAG', level: 80, levelName: '熟练' }
+                    ]
+                },
+                {
+                    name: '工程能力', icon: 'ri-tools-fill',
+                    items: [
+                        { name: 'Docker/PVE', level: 85, levelName: '熟练' },
                         { name: 'Git', level: 85, levelName: '熟练' },
-                        { name: 'AI API 集成', level: 80, levelName: '熟练' }
+                        { name: 'PyQt5', level: 80, levelName: '熟练' },
+                        { name: 'PyTorch', level: 85, levelName: '熟练' }
                     ]
                 }
             ]);
 
             const projects = ref([
                 {
+                    icon: 'ri-eye-fill', title: '异常行为检测与预警系统',
+                    desc: '基于深度学习的驾驶员车内异常行为实时检测系统。完成模型训练、优化与部署，实现多种异常行为的精准识别与及时预警。',
+                    tags: ['Python', 'YOLO', 'Deep Learning', 'OpenCV'],
+                    link: '',
+                    stars: ''
+                },
+                {
+                    icon: 'ri-body-scan-fill', title: '3D人体姿态估计与数字人重建',
+                    desc: '参与国家重点研发计划课题，研究单目图像到3D人体姿态估计方法，结合SMPL参数化人体模型实现数字人重建完整流程。',
+                    tags: ['Python', 'PyTorch', 'SMPL', '3D Vision'],
+                    link: 'https://github.com/ddxgtx/ATCA',
+                    stars: ''
+                },
+                {
+                    icon: 'ri-chat-search-fill', title: 'RAG企业知识库智能问答助手',
+                    desc: '基于LangChain框架构建RAG核心流程，实现企业内部文档的智能检索与精准问答，提升知识获取效率。',
+                    tags: ['Python', 'LangChain', 'RAG', 'LLM'],
+                    link: '',
+                    stars: ''
+                },
+                {
                     icon: 'ri-steam-fill', title: 'SteamSwitch',
-                    desc: '一站式 Steam 多账号管理工具。支持快速切换账号、游戏绑定、任务栏常驻、桌面悬浮窗、Steam 库界面注入。',
+                    desc: '一站式Steam多账号管理工具，支持快速切换账号、游戏绑定、任务栏常驻、桌面悬浮窗、Steam库界面注入。',
                     tags: ['C#', '.NET 8.0', 'WPF', 'Win32 API'],
                     link: 'https://github.com/ddxgtx/SteamSwitch',
                     stars: '26'
-                },
-                {
-                    icon: 'ri-chrome-fill', title: 'AI-JobHunter',
-                    desc: '智能求职助手 Chrome 扩展。支持 7 大招聘平台，基于 JD 自动生成个性化话术，AI 智能填写简历、面试准备。',
-                    tags: ['JavaScript', 'Chrome Extension', 'AI', 'OpenAI'],
-                    link: 'https://github.com/ddxgtx/AI-JobHunter',
-                    stars: '4'
-                },
-                {
-                    icon: 'ri-brain-fill', title: 'ATCA',
-                    desc: 'CVPR 2024 论文实现 - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation。',
-                    tags: ['Python', 'PyTorch', 'Computer Vision', 'CVPR'],
-                    link: 'https://github.com/ddxgtx/ATCA',
-                    stars: ''
                 }
             ]);
 
             const experience = ref([
-                { date: '2024 - 至今', title: '开源项目开发者', company: 'GitHub', desc: '维护 SteamSwitch、AI-JobHunter 等开源项目，累计 30+ Stars' },
-                { date: '2024', title: 'CVPR 论文复现', company: '学术研究', desc: '复现 CVPR 2024 论文 Hourglass Tokenizer，3D 人体姿态估计' }
+                { date: '2024.09 - 2027.06', title: '电子信息（计算机技术）硕士', company: '沈阳建筑大学', desc: '深耕计算机视觉与深度学习研究，参与国家重点研发计划课题' },
+                { date: '2020.09 - 2024.06', title: '计算机科学与技术 本科', company: '沈阳建筑大学', desc: '多次获得国家级竞赛一等奖，获优秀学生奖学金' }
             ]);
 
             const stats = ref([
+                { value: '2', label: '国家一等奖' },
+                { value: '4', label: '省级奖项' },
                 { value: '4', label: '开源项目' },
-                { value: '30+', label: 'GitHub Stars' },
-                { value: '101', label: 'Starred 项目' },
-                { value: '3', label: 'Followers' }
+                { value: 'LMCC', label: 'CCF认证' }
             ]);
 
             const typedText = ref('');
@@ -389,11 +448,11 @@
 
             const visibleSections = reactive({
                 about: false, skills: false, projects: false,
-                experience: false, stats: false, poetry: false
+                experience: false, awards: false, stats: false, poetry: false
             });
 
             const typeWriter = () => {
-                const texts = ['SteamSwitch 开发者', 'AI-JobHunter 作者', 'Love Technology', 'Open Source Enthusiast'];
+                const texts = ['计算机视觉研究者', '深度学习工程师', '国家一等奖获得者', 'Open Source Contributor'];
                 let textIndex = 0, charIndex = 0, isDeleting = false;
                 const type = () => {
                     const current = texts[textIndex];
