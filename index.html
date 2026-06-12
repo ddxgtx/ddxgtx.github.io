@@ -13,23 +13,23 @@
     <script>window.ga = window.ga || function () {};</script>
 </head>
 <body>
-    <!-- ===== Section 1: AquaInkGL Landing ===== -->
+    <!-- AquaInkGL Canvas (fixed background) -->
+    <canvas id="ink-canvas"></canvas>
+
+    <!-- ===== Section 1: Landing ===== -->
     <section id="landing" class="landing-section">
-        <canvas id="ink-canvas"></canvas>
-        <div class="landing-overlay">
-            <div class="landing-content">
-                <h1 class="landing-title">ddxgtx</h1>
-                <p class="landing-subtitle">Life is actually very interesting</p>
-                <div class="landing-links">
-                    <a href="https://github.com/ddxgtx" target="_blank" class="landing-link" aria-label="GitHub">
-                        <i class="ri-github-fill"></i>
-                    </a>
-                </div>
+        <div class="landing-content">
+            <h1 class="landing-title">ddxgtx</h1>
+            <p class="landing-subtitle">Life is actually very interesting</p>
+            <div class="landing-links">
+                <a href="https://github.com/ddxgtx" target="_blank" class="landing-link" aria-label="GitHub">
+                    <i class="ri-github-fill"></i>
+                </a>
             </div>
-            <div class="scroll-hint" id="scrollHint">
-                <span>Scroll Down</span>
-                <i class="ri-arrow-down-line"></i>
-            </div>
+        </div>
+        <div class="scroll-hint" id="scrollHint">
+            <span>Scroll Down</span>
+            <i class="ri-arrow-down-line"></i>
         </div>
     </section>
 
@@ -272,11 +272,11 @@
         function multipleSplats(amount){for(var i=0;i<amount;i++){var color=generateColor();color.r*=10.0;color.g*=10.0;color.b*=10.0;var x=Math.random();var y=Math.random();var dx=1000*(Math.random()-0.5);var dy=1000*(Math.random()-0.5);splat(x,y,dx,dy,color);}}
         function splat(x,y,dx,dy,color){gl.viewport(0,0,velocity.width,velocity.height);splatProgram.bind();gl.uniform1i(splatProgram.uniforms.uTarget,velocity.read.attach(0));gl.uniform1f(splatProgram.uniforms.aspectRatio,canvas.width/canvas.height);gl.uniform2f(splatProgram.uniforms.point,x,y);gl.uniform3f(splatProgram.uniforms.color,dx,dy,0.0);gl.uniform1f(splatProgram.uniforms.radius,correctRadius(config.SPLAT_RADIUS/100.0));blit(velocity.write.fbo);velocity.swap();gl.viewport(0,0,dye.width,dye.height);gl.uniform1i(splatProgram.uniforms.uTarget,dye.read.attach(0));gl.uniform3f(splatProgram.uniforms.color,color.r,color.g,color.b);blit(dye.write.fbo);dye.swap();}
         function correctRadius(radius){var aspectRatio=canvas.width/canvas.height;if(aspectRatio>1)radius*=aspectRatio;return radius;}
-        canvas.addEventListener('mousedown',function(e){var posX=scaleByPixelRatio(e.offsetX);var posY=scaleByPixelRatio(e.offsetY);var pointer=pointers.find(function(p){return p.id==-1;});if(pointer==null)pointer=new pointerPrototype();updatePointerDownData(pointer,-1,posX,posY);});
-        canvas.addEventListener('mousemove',function(e){var posX=scaleByPixelRatio(e.offsetX);var posY=scaleByPixelRatio(e.offsetY);var pointer=pointers[0];if(!pointer.down){updatePointerDownData(pointer,-1,posX,posY);}updatePointerMoveData(pointer,posX,posY);});
+        canvas.addEventListener('mousedown',function(e){var posX=scaleByPixelRatio(e.clientX);var posY=scaleByPixelRatio(e.clientY);var pointer=pointers.find(function(p){return p.id==-1;});if(pointer==null)pointer=new pointerPrototype();updatePointerDownData(pointer,-1,posX,posY);});
+        canvas.addEventListener('mousemove',function(e){var posX=scaleByPixelRatio(e.clientX);var posY=scaleByPixelRatio(e.clientY);var pointer=pointers[0];if(!pointer.down){updatePointerDownData(pointer,-1,posX,posY);}updatePointerMoveData(pointer,posX,posY);});
         window.addEventListener('mouseup',function(){updatePointerUpData(pointers[0]);});
-        canvas.addEventListener('touchstart',function(e){e.preventDefault();var touches=e.targetTouches;while(touches.length>=pointers.length)pointers.push(new pointerPrototype());for(var i=0;i<touches.length;i++){var posX=scaleByPixelRatio(touches[i].pageX);var posY=scaleByPixelRatio(touches[i].pageY);updatePointerDownData(pointers[i+1],touches[i].identifier,posX,posY);}});
-        canvas.addEventListener('touchmove',function(e){e.preventDefault();var touches=e.targetTouches;for(var i=0;i<touches.length;i++){var pointer=pointers[i+1];if(!pointer.down)continue;var posX=scaleByPixelRatio(touches[i].pageX);var posY=scaleByPixelRatio(touches[i].pageY);updatePointerMoveData(pointer,posX,posY);}},false);
+        canvas.addEventListener('touchstart',function(e){e.preventDefault();var touches=e.targetTouches;while(touches.length>=pointers.length)pointers.push(new pointerPrototype());for(var i=0;i<touches.length;i++){var posX=scaleByPixelRatio(touches[i].clientX);var posY=scaleByPixelRatio(touches[i].clientY);updatePointerDownData(pointers[i+1],touches[i].identifier,posX,posY);}});
+        canvas.addEventListener('touchmove',function(e){e.preventDefault();var touches=e.targetTouches;for(var i=0;i<touches.length;i++){var pointer=pointers[i+1];if(!pointer.down)continue;var posX=scaleByPixelRatio(touches[i].clientX);var posY=scaleByPixelRatio(touches[i].clientY);updatePointerMoveData(pointer,posX,posY);}},false);
         window.addEventListener('touchend',function(e){var touches=e.changedTouches;for(var i=0;i<touches.length;i++){var pointer=pointers.find(function(p){return p.id==touches[i].identifier;});if(pointer==null)continue;updatePointerUpData(pointer);}});
         window.addEventListener('keydown',function(e){if(e.code==='KeyP')config.PAUSED=!config.PAUSED;if(e.key===' ')splatStack.push(parseInt(Math.random()*20)+5);});
         function updatePointerDownData(pointer,id,posX,posY){pointer.id=id;pointer.down=true;pointer.moved=false;pointer.texcoordX=posX/canvas.width;pointer.texcoordY=1.0-posY/canvas.height;pointer.prevTexcoordX=pointer.texcoordX;pointer.prevTexcoordY=pointer.texcoordY;pointer.deltaX=0;pointer.deltaY=0;pointer.color=generateColor();}
