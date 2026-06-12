@@ -155,7 +155,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .app-container {
     position: relative;
     z-index: 10;
-    background: var(--bg-primary);
+    background: transparent;
 }
 
 /* ===== Navbar ===== */
@@ -190,9 +190,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(22, 27, 34, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 12px;
     position: relative;
@@ -511,7 +511,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .poetry-box p { font-size: 0.92rem; color: var(--text-secondary); font-style: italic; }
 
 /* ===== Footer ===== */
-.footer { border-top: 1px solid var(--border); margin-top: 2.5rem; padding: 2rem 1.5rem 1.5rem; }
+.footer {
+    border-top: 1px solid var(--border);
+    margin-top: 2.5rem;
+    padding: 2rem 1.5rem 1.5rem;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
 .footer-content { display: flex; justify-content: space-between; max-width: 960px; margin: 0 auto 1.5rem; }
 .footer-info h3 { font-size: 1rem; color: var(--accent); margin-bottom: 0.3rem; }
 .footer-info p { font-size: 0.82rem; color: var(--text-muted); }
