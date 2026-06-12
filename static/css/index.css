@@ -61,25 +61,32 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     text-align: center;
     pointer-events: none;
     animation: fadeUp 1s ease-out;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3rem 4rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .landing-title {
     font-size: 6rem;
     font-weight: 700;
     color: #fff;
-    text-shadow: 0 0 40px rgba(88, 166, 255, 0.3);
+    text-shadow: 0 0 30px rgba(88, 166, 255, 0.6), 0 0 60px rgba(88, 166, 255, 0.3), 0 2px 4px rgba(0,0,0,0.8);
     margin-bottom: 0.5rem;
     letter-spacing: 4px;
     animation: titleGlow 3s ease-in-out infinite;
 }
 @keyframes titleGlow {
-    0%, 100% { text-shadow: 0 0 40px rgba(88, 166, 255, 0.3), -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f0f; }
-    50% { text-shadow: 0 0 60px rgba(88, 166, 255, 0.5), 1.5px 1.5px 0 #0ff, -1.5px -1.5px 0 #f0f; }
+    0%, 100% { text-shadow: 0 0 30px rgba(88, 166, 255, 0.6), 0 0 60px rgba(88, 166, 255, 0.3), 0 2px 4px rgba(0,0,0,0.8); }
+    50% { text-shadow: 0 0 50px rgba(88, 166, 255, 0.8), 0 0 100px rgba(88, 166, 255, 0.4), 0 2px 4px rgba(0,0,0,0.8); }
 }
 .landing-subtitle {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     letter-spacing: 2px;
     margin-bottom: 1.5rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 .landing-links {
     display: flex;
@@ -311,6 +318,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     html { font-size: 14px; }
     .landing-title { font-size: 3.5rem; }
     .landing-subtitle { font-size: 1rem; }
+    .landing-content { padding: 2rem 2.5rem; }
     .navbar { padding: 0.7rem 1.2rem; }
     .nav-links { display: none; }
     .section { padding: 3rem 1.2rem 0; }
@@ -323,5 +331,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (max-width: 480px) {
     html { font-size: 13px; }
     .landing-title { font-size: 2.5rem; }
+    .landing-content { padding: 1.5rem 2rem; }
     .tech-item { grid-template-columns: 110px 1fr 40px; }
 }
