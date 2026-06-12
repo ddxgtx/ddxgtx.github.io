@@ -92,6 +92,37 @@
                 </div>
             </section>
 
+            <!-- Research Interests -->
+            <section id="research" class="section" :class="{ visible: visibleSections.research }">
+                <div class="section-header">
+                    <i class="ri-microscope-fill"></i>
+                    <h2>研究方向</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-icon"><i class="ri-eye-fill"></i></div>
+                        <h3>计算机视觉</h3>
+                        <p>研究目标检测、图像分割、姿态估计等视觉任务，专注于将深度学习算法应用于实际场景，如异常行为检测、人体姿态重建等。</p>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-icon"><i class="ri-brain-fill"></i></div>
+                        <h3>深度学习</h3>
+                        <p>探索卷积神经网络、Transformer、生成对抗网络等模型架构，研究模型优化、迁移学习、少样本学习等关键技术。</p>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-icon"><i class="ri-body-scan-fill"></i></div>
+                        <h3>3D 人体建模</h3>
+                        <p>研究从单目图像到3D人体姿态的估计方法，结合SMPL参数化人体模型，实现数字人重建与动画驱动。</p>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-icon"><i class="ri-chat-ai-fill"></i></div>
+                        <h3>大语言模型应用</h3>
+                        <p>研究RAG检索增强生成技术，将大语言模型应用于企业知识管理、智能问答、文档分析等实际业务场景。</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Skills -->
             <section id="skills" class="section" :class="{ visible: visibleSections.skills }">
                 <div class="section-header">
@@ -181,6 +212,45 @@
                 </div>
             </section>
 
+            <!-- Career Goals -->
+            <section id="goals" class="section" :class="{ visible: visibleSections.goals }">
+                <div class="section-header">
+                    <i class="ri-focus-3-fill"></i>
+                    <h2>求职意向</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="goals-content">
+                    <div class="goal-item">
+                        <div class="goal-icon"><i class="ri-briefcase-fill"></i></div>
+                        <div class="goal-info">
+                            <h3>目标岗位</h3>
+                            <p>计算机视觉算法工程师 / 深度学习工程师 / AI 算法工程师</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon"><i class="ri-map-pin-fill"></i></div>
+                        <div class="goal-info">
+                            <h3>期望城市</h3>
+                            <p>北京 / 上海 / 深圳 / 杭州 / 成都 / 沈阳</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon"><i class="ri-calendar-fill"></i></div>
+                        <div class="goal-info">
+                            <h3>到岗时间</h3>
+                            <p>2027年6月毕业，可提前实习</p>
+                        </div>
+                    </div>
+                    <div class="goal-item">
+                        <div class="goal-icon"><i class="ri-star-fill"></i></div>
+                        <div class="goal-info">
+                            <h3>个人优势</h3>
+                            <p>扎实的深度学习基础，丰富的竞赛获奖经历，良好的工程实践能力，积极主动的学习态度</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Stats -->
             <section id="stats" class="section section-stats" :class="{ visible: visibleSections.stats }">
                 <div class="stats-grid">
@@ -206,6 +276,7 @@
                         <h3>邓栋旭</h3>
                         <p>沈阳建筑大学 · 电子信息（计算机技术）硕士</p>
                         <p>2027届应届生 · 计算机视觉 & 深度学习</p>
+                        <p class="footer-goal">求职意向：CV算法工程师 / 深度学习工程师</p>
                     </div>
                     <div class="footer-contact">
                         <h4>联系方式</h4>
@@ -213,6 +284,9 @@
                             <a href="tel:18909789601"><i class="ri-phone-fill"></i> 18909789601</a>
                             <a href="mailto:ddxgtx@Gmail.com"><i class="ri-mail-fill"></i> ddxgtx@Gmail.com</a>
                             <a href="https://github.com/ddxgtx" target="_blank"><i class="ri-github-fill"></i> GitHub</a>
+                        </div>
+                        <div class="contact-items" style="margin-top: 0.6rem;">
+                            <span class="contact-tag"><i class="ri-wechat-fill"></i> 微信：ddxgtx</span>
                         </div>
                     </div>
                 </div>
@@ -451,8 +525,8 @@
             const poetry = ref('路漫漫其修远兮，吾将上下而求索。');
 
             const visibleSections = reactive({
-                about: false, skills: false, projects: false,
-                experience: false, awards: false, stats: false, poetry: false
+                about: false, experience: false, research: false, skills: false,
+                projects: false, awards: false, goals: false, stats: false, poetry: false
             });
 
             const typeWriter = () => {

@@ -386,6 +386,78 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .cert-item:hover { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
 .cert-item i { color: var(--accent); font-size: 1rem; }
 
+/* ===== Research ===== */
+.research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.research-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    transition: all 0.3s;
+}
+.research-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.research-icon {
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+.research-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+.research-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* ===== Goals ===== */
+.goals-content { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.goal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.3s;
+}
+.goal-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.goal-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(88, 166, 255, 0.1);
+    border-radius: 8px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.goal-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+.goal-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
 /* ===== Stats ===== */
 .section-stats {
     background: linear-gradient(135deg, rgba(22, 27, 34, 0.8), rgba(13, 17, 23, 0.9));
@@ -421,6 +493,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .footer-content { display: flex; justify-content: space-between; max-width: 960px; margin: 0 auto 1.5rem; }
 .footer-info h3 { font-size: 1rem; color: var(--accent); margin-bottom: 0.3rem; }
 .footer-info p { font-size: 0.82rem; color: var(--text-muted); }
+.footer-goal {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(88, 166, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.82rem;
+    color: var(--accent);
+    display: inline-block;
+}
 .footer-contact h4 { font-size: 0.88rem; margin-bottom: 0.5rem; color: var(--text-secondary); }
 .contact-items { display: flex; gap: 1.2rem; }
 .contact-items a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
@@ -438,6 +519,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     .about-grid { grid-template-columns: repeat(2, 1fr); }
     .tech-categories { grid-template-columns: 1fr; }
     .awards-grid { grid-template-columns: 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .goals-content { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
     html { font-size: 14px; }
