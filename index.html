@@ -37,14 +37,6 @@
     <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
     <div id="app">
         <div class="app-container">
-            <!-- Navbar (appears after scroll) -->
-            <nav class="navbar" id="navbar">
-                <div class="nav-brand">&lt;/&gt; 邓栋旭</div>
-                <div class="nav-links">
-                    <a v-for="link in navLinks" :key="link.id" :href="'#' + link.id">{{ link.title }}</a>
-                </div>
-            </nav>
-
             <!-- About -->
             <section id="about" class="section" :class="{ visible: visibleSections.about }">
                 <div class="section-header">
@@ -416,14 +408,6 @@
 
     createApp({
         setup() {
-            const navLinks = ref([
-                { id: 'about', title: '关于' },
-                { id: 'skills', title: '技术栈' },
-                { id: 'projects', title: '项目' },
-                { id: 'experience', title: '经历' },
-                { id: 'contact', title: '联系' }
-            ]);
-
             const socialLinks = ref([
                 { name: 'GitHub', icon: 'ri-github-fill', url: 'https://github.com/ddxgtx' },
                 { name: 'Email', icon: 'ri-mail-fill', url: 'mailto:ddxgtx@Gmail.com' },
@@ -599,20 +583,16 @@
                 });
             };
 
-            const initNavbar = () => {
-                const navbar = document.getElementById('navbar');
+            const initScrollHandler = () => {
                 const landing = document.getElementById('landing');
-                const scrollArrow = document.getElementById('scrollArrow');
                 const wrap = document.querySelector('.wrap');
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
                     const landingHeight = landing.offsetHeight;
                     if (scrollY > landingHeight * 0.3) {
-                        navbar.classList.add('visible');
                         wrap.style.opacity = '0';
                         wrap.style.pointerEvents = 'none';
                     } else {
-                        navbar.classList.remove('visible');
                         wrap.style.opacity = '1';
                     }
                 });
@@ -628,13 +608,13 @@
             onMounted(() => {
                 typeWriter();
                 initScrollObserver();
-                initNavbar();
+                initScrollHandler();
                 initScrollArrow();
                 loadExternalData();
             });
 
             return {
-                navLinks, socialLinks, about, skills, projects,
+                socialLinks, about, skills, projects,
                 experience, stats, typedText, hitokoto, poetry, visibleSections
             };
         }
