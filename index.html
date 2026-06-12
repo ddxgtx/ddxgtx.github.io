@@ -31,15 +31,11 @@
                     <i class="ri-mail-fill"></i>
                 </a>
             </div>
+            <div class="scroll-arrow" id="scrollArrow">
+                <i class="ri-arrow-down-line"></i>
+            </div>
         </div>
     </section>
-
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator" id="scrollIndicator">
-        <div class="scroll-mouse">
-            <div class="scroll-dot"></div>
-        </div>
-    </div>
 
     <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
     <div id="app">
@@ -557,19 +553,17 @@
             const initNavbar = () => {
                 const navbar = document.getElementById('navbar');
                 const landing = document.getElementById('landing');
-                const scrollIndicator = document.getElementById('scrollIndicator');
+                const scrollArrow = document.getElementById('scrollArrow');
                 const wrap = document.querySelector('.wrap');
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
                     const landingHeight = landing.offsetHeight;
                     if (scrollY > landingHeight * 0.3) {
                         navbar.classList.add('visible');
-                        scrollIndicator.classList.add('hidden');
                         wrap.style.opacity = '0';
                         wrap.style.pointerEvents = 'none';
                     } else {
                         navbar.classList.remove('visible');
-                        scrollIndicator.classList.remove('hidden');
                         wrap.style.opacity = '1';
                     }
                 });

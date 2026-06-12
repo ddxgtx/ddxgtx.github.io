@@ -119,38 +119,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
 }
-.scroll-indicator {
-    position: fixed;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 9999;
-    transition: opacity 0.5s;
-}
-.scroll-indicator.hidden {
-    opacity: 0;
-}
-.scroll-mouse {
-    width: 26px;
-    height: 42px;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 13px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-.scroll-dot {
-    width: 4px;
-    height: 8px;
-    background: #fff;
-    border-radius: 2px;
+.scroll-arrow {
     position: absolute;
-    top: 8px;
-    animation: scrollDot 2s ease-in-out infinite;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    animation: bounceArrow 2s ease-in-out infinite;
+    pointer-events: none;
 }
-@keyframes scrollDot {
-    0% { top: 8px; opacity: 1; }
-    100% { top: 24px; opacity: 0; }
+@keyframes bounceArrow {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+    50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
 }
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
