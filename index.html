@@ -551,29 +551,30 @@
                 const arrow = document.createElement('div');
                 arrow.id = 'scrollArrow';
                 arrow.innerHTML = `
-                    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-                        <div style="width:24px;height:40px;border:2px solid rgba(255,255,255,0.5);border-radius:12px;position:relative;">
-                            <div style="width:4px;height:8px;background:#fff;border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scrollDot 2s ease-in-out infinite;"></div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;align-items:center;animation:bounceArrow 2s ease-in-out infinite;">
-                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.7);margin:-6px;"></i>
-                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.4);margin:-6px;"></i>
-                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.2);margin:-6px;"></i>
-                        </div>
+                    <div style="display:flex;flex-direction:column;align-items:center;">
+                        <i class="ri-arrow-down-s-line" style="font-size:1.8rem;color:rgba(255,255,255,0.8);margin:-8px;animation:fadeArrow1 2s ease-in-out infinite;"></i>
+                        <i class="ri-arrow-down-s-line" style="font-size:1.8rem;color:rgba(255,255,255,0.5);margin:-8px;animation:fadeArrow2 2s ease-in-out infinite;"></i>
+                        <i class="ri-arrow-down-s-line" style="font-size:1.8rem;color:rgba(255,255,255,0.3);margin:-8px;animation:fadeArrow3 2s ease-in-out infinite;"></i>
                     </div>
                 `;
-                arrow.style.cssText = 'position:fixed;bottom:50px;left:50%;transform:translateX(-50%);z-index:99999;pointer-events:none;mix-blend-mode:normal;';
+                arrow.style.cssText = 'position:fixed;bottom:15px;left:50%;transform:translateX(-50%);z-index:99999;pointer-events:none;mix-blend-mode:normal;';
                 document.body.appendChild(arrow);
 
                 const style = document.createElement('style');
                 style.textContent = `
-                    @keyframes scrollDot {
-                        0% { top: 8px; opacity: 1; }
-                        100% { top: 22px; opacity: 0; }
+                    @keyframes fadeArrow1 {
+                        0%, 100% { opacity: 0.3; transform: translateY(0); }
+                        50% { opacity: 1; transform: translateY(5px); }
                     }
-                    @keyframes bounceArrow {
-                        0%, 100% { transform: translateY(0); opacity: 0.5; }
-                        50% { transform: translateY(8px); opacity: 1; }
+                    @keyframes fadeArrow2 {
+                        0%, 100% { opacity: 0.2; transform: translateY(0); }
+                        50% { opacity: 0.7; transform: translateY(5px); }
+                        25% { opacity: 1; transform: translateY(3px); }
+                    }
+                    @keyframes fadeArrow3 {
+                        0%, 100% { opacity: 0.1; transform: translateY(0); }
+                        50% { opacity: 0.5; transform: translateY(5px); }
+                        75% { opacity: 1; transform: translateY(3px); }
                     }
                 `;
                 document.head.appendChild(style);
