@@ -1,262 +1,492 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ddxgtx's Blog</title><meta name="author" content="ddxgtx"><meta name="copyright" content="ddxgtx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta property="og:type" content="website">
-<meta property="og:title" content="ddxgtx&#39;s Blog">
-<meta property="og:url" content="https://ddxgtx.fun/index.html">
-<meta property="og:site_name" content="ddxgtx&#39;s Blog">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ddxgtx.fun/img/avatar.png">
-<meta property="article:author" content="ddxgtx">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ddxgtx.fun/img/avatar.png"><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ddxgtx's Blog",
-  "alternateName": [
-    "ddxgtx.fun"
-  ],
-  "url": "https://ddxgtx.fun/"
-}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://ddxgtx.fun/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ddxgtx | Developer</title>
+    <meta name="description" content="ddxgtx的个人主页，热爱技术，热爱生活">
+    <meta name="keywords" content="ddxgtx,developer,homepage">
+    <meta name="theme-color" content="#0d1117">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <script>window.ga = window.ga || function () {};</script>
+</head>
+<body>
+    <!-- ===== Section 1: AquaInkGL Landing ===== -->
+    <section id="landing" class="landing-section">
+        <canvas id="ink-canvas"></canvas>
+        <div class="landing-overlay">
+            <div class="landing-content">
+                <h1 class="landing-title">ddxgtx</h1>
+                <p class="landing-subtitle">Life is actually very interesting</p>
+                <div class="landing-links">
+                    <a href="https://github.com/ddxgtx" target="_blank" class="landing-link" aria-label="GitHub">
+                        <i class="ri-github-fill"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-hint" id="scrollHint">
+                <span>Scroll Down</span>
+                <i class="ri-arrow-down-line"></i>
+            </div>
+        </div>
+    </section>
 
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
-  
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
+    <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
+    <div id="app">
+        <canvas id="particles"></canvas>
 
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
+        <div class="app-container">
+            <!-- Navbar (appears after scroll) -->
+            <nav class="navbar" id="navbar">
+                <div class="nav-brand">&lt;/&gt; ddxgtx</div>
+                <div class="nav-links">
+                    <a v-for="link in navLinks" :key="link.id" :href="'#' + link.id">{{ link.title }}</a>
+                </div>
+            </nav>
 
-      const theme = saveToLocal.get('theme')
-    
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
-        
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
-    
-      
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: '复制成功',
-    error: '复制失败',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: true,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'ddxgtx\'s Blog',
-  isHighlightShrink: false,
-  isToc: false,
-  pageType: 'home'
-}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
-  const $loadingBox = document.getElementById('loading-box')
-  const $body = document.body
-  const preloader = {
-    endLoading: () => {
-      if ($loadingBox.classList.contains('loaded')) return
-      $body.style.overflow = ''
-      $loadingBox.classList.add('loaded')
-    },
-    initLoading: () => {
-      $body.style.overflow = 'hidden'
-      $loadingBox.classList.remove('loaded')
-    }
-  }
+            <!-- About -->
+            <section id="about" class="section" :class="{ visible: visibleSections.about }">
+                <div class="section-header">
+                    <i class="ri-user-star-line"></i>
+                    <h2>About Me</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="about-intro">
+                    <p>{{ about.intro }}</p>
+                </div>
+                <div class="about-grid">
+                    <div v-for="card in about.cards" :key="card.title" class="about-card">
+                        <div class="about-icon"><i :class="card.icon"></i></div>
+                        <h3>{{ card.title }}</h3>
+                        <p>{{ card.desc }}</p>
+                    </div>
+                </div>
+                <div class="quote-box">
+                    <i class="ri-double-quotes-l"></i>
+                    <p>{{ hitokoto }}</p>
+                </div>
+            </section>
 
-  preloader.initLoading()
+            <!-- Skills -->
+            <section id="skills" class="section" :class="{ visible: visibleSections.skills }">
+                <div class="section-header">
+                    <i class="ri-stack-line"></i>
+                    <h2>Technology Stack</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="tech-categories">
+                    <div v-for="category in skills" :key="category.name" class="tech-category">
+                        <h3><i :class="category.icon"></i> {{ category.name }}</h3>
+                        <div class="tech-items">
+                            <div v-for="item in category.items" :key="item.name" class="tech-item"
+                                :data-level="item.level">
+                                <span class="tech-name">{{ item.name }}</span>
+                                <div class="tech-bar">
+                                    <div class="tech-progress"
+                                        :style="{ width: visibleSections.skills ? item.level + '%' : 0 }"></div>
+                                </div>
+                                <span class="tech-level">{{ item.levelName }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  if (document.readyState === 'complete') {
-    preloader.endLoading()
-  } else {
-    window.addEventListener('load', preloader.endLoading)
-    document.addEventListener('DOMContentLoaded', preloader.endLoading)
-    // Add timeout protection: force end after 7 seconds
-    setTimeout(preloader.endLoading, 7000)
-  }
+            <!-- Projects -->
+            <section id="projects" class="section" :class="{ visible: visibleSections.projects }">
+                <div class="section-header">
+                    <i class="ri-folder-fill"></i>
+                    <h2>Projects</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="projects-grid">
+                    <div v-for="project in projects" :key="project.title" class="project-card">
+                        <div class="project-header">
+                            <i :class="project.icon"></i>
+                            <h3>{{ project.title }}</h3>
+                        </div>
+                        <p class="project-desc">{{ project.desc }}</p>
+                        <div class="project-tags">
+                            <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  if (false) {
-    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
-    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
-  }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header" style="background-image: url(/img/banner.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">ddxgtx's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">ddxgtx's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/ddxgtx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2026/06/11/hello-world/" title="你好世界"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/post-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你好世界"></a></div><div class="recent-post-info"><a class="article-title" href="/2026/06/11/hello-world/" title="你好世界">你好世界</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-06-11T02:00:00.000Z" title="发表于 2026-06-11 10:00:00">2026-06-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></span></div><div class="content">欢迎来到我的博客！这是我的第一篇文章。 这里将记录我的学习笔记、技术分享和生活感悟。   关于这个博客这个博客使用 Hexo 搭建，采用 Butterfly 主题。 我的技术栈 前端: JavaScript, TypeScript, React, Vue 后端: Node.js, Python 工具: Git, Docker, Linux  博客功能 暗黑模式支持 本地搜索 文章分类与标签 响应式设计  快速开始创建新文章1hexo new &quot;文章标题&quot;  本地预览1hexo server  生成静态文件1hexo generate    生活不止眼前的代码，还有诗和远方。  </div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">ddxgtx</div><div class="author-info-description">热爱技术，热爱生活</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ddxgtx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ddxgtx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的个人博客，这里记录我的学习笔记与生活感悟。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/11/hello-world/" title="你好世界"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/post-cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你好世界"/></a><div class="content"><a class="title" href="/2026/06/11/hello-world/" title="你好世界">你好世界</a><time datetime="2026-06-11T02:00:00.000Z" title="发表于 2026-06-11 10:00:00">2026-06-11</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>分类</span>
-            
-          </div>
-          <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/"><span class="card-category-list-name">日记</span><span class="card-category-list-count">1</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives">
-    <div class="item-headline">
-      <i class="fas fa-archive"></i>
-      <span>归档</span>
-      
+            <!-- Experience -->
+            <section id="experience" class="section" :class="{ visible: visibleSections.experience }">
+                <div class="section-header">
+                    <i class="ri-time-line"></i>
+                    <h2>Experience</h2>
+                    <span class="section-line"></span>
+                </div>
+                <div class="timeline">
+                    <div v-for="(item, index) in experience" :key="index" class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">{{ item.date }}</div>
+                            <h3>{{ item.title }}</h3>
+                            <p class="timeline-company">{{ item.company }}</p>
+                            <p class="timeline-desc">{{ item.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <section id="stats" class="section section-stats" :class="{ visible: visibleSections.stats }">
+                <div class="stats-grid">
+                    <div v-for="stat in stats" :key="stat.label" class="stat-item">
+                        <div class="stat-number">{{ stat.value }}</div>
+                        <div class="stat-label">{{ stat.label }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Poetry -->
+            <section id="poetry" class="section section-poetry" :class="{ visible: visibleSections.poetry }">
+                <div class="poetry-box">
+                    <i class="ri-quill-pen-line"></i>
+                    <p>{{ poetry }}</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="contact" class="footer">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <h3>ddxgtx</h3>
+                        <p>热爱技术，热爱生活</p>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Connect</h4>
+                        <div class="contact-items">
+                            <a v-for="social in socialLinks" :key="social.name" :href="social.url" target="_blank">
+                                <i :class="social.icon"></i> {{ social.name }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright-main">&copy; 2026 ddxgtx · All Rights Reserved</p>
+                    <p class="copyright-sub">
+                        <span>Powered by Vue 3</span>
+                        <span class="divider">|</span>
+                        <span><a href="https://github.com/ddxgtx" target="_blank">GitHub</a></span>
+                        <span class="divider">|</span>
+                        <span>Made with <i class="ri-heart-fill"></i> in China</span>
+                    </p>
+                </div>
+            </footer>
+        </div>
     </div>
-  
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/06/">
-            <span class="card-archive-list-date">
-              六月 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">150</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-12T01:06:21.741Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By ddxgtx</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5"></script><script src="/js/main.js?v=5.5.5"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
-  init: str => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: subtitleType => {
-    if (true) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@3.0.0/dist/typed.umd.min.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  },
-  processSubtitle: (content, extraContents = []) => {
-    if (true) {
-      const sub = ["热爱技术","热爱生活","持续学习"].slice()
 
-      if (extraContents.length > 0) {
-        sub.unshift(...extraContents)
-      }
+    <!-- AquaInkGL Script -->
+    <script>
+    (function(){
+        var canvas = document.getElementById('ink-canvas');
+        var config = {
+            SIM_RESOLUTION: 128, DYE_RESOLUTION: 1024, CAPTURE_RESOLUTION: 512,
+            DENSITY_DISSIPATION: 1, VELOCITY_DISSIPATION: 0.2, PRESSURE: 0.8,
+            PRESSURE_ITERATIONS: 20, CURL: 30, SPLAT_RADIUS: 0.25, SPLAT_FORCE: 6000,
+            SHADING: true, COLORFUL: true, COLOR_UPDATE_SPEED: 10, PAUSED: false,
+            BACK_COLOR: { r: 0, g: 0, b: 0 }, TRANSPARENT: false,
+            BLOOM: true, BLOOM_ITERATIONS: 8, BLOOM_RESOLUTION: 256, BLOOM_INTENSITY: 0.8,
+            BLOOM_THRESHOLD: 0.6, BLOOM_SOFT_KNEE: 0.7,
+            SUNRAYS: true, SUNRAYS_RESOLUTION: 196, SUNRAYS_WEIGHT: 1.0,
+        };
+        function pointerPrototype(){this.id=-1;this.texcoordX=0;this.texcoordY=0;this.prevTexcoordX=0;this.prevTexcoordY=0;this.deltaX=0;this.deltaY=0;this.down=false;this.moved=false;this.color=[30,0,300];}
+        var pointers=[];var splatStack=[];pointers.push(new pointerPrototype());
+        var ref=getWebGLContext(canvas);var gl=ref.gl;var ext=ref.ext;
+        if(isMobile()){config.DYE_RESOLUTION=512;}
+        if(!ext.supportLinearFiltering){config.DYE_RESOLUTION=512;config.SHADING=false;config.BLOOM=false;config.SUNRAYS=false;}
+        function getWebGLContext(canvas){var params={alpha:true,depth:false,stencil:false,antialias:false,preserveDrawingBuffer:false};var gl=canvas.getContext('webgl2',params);var isWebGL2=!!gl;if(!isWebGL2)gl=canvas.getContext('webgl',params)||canvas.getContext('experimental-webgl',params);var halfFloat;var supportLinearFiltering;if(isWebGL2){gl.getExtension('EXT_color_buffer_float');supportLinearFiltering=gl.getExtension('OES_texture_float_linear');}else{halfFloat=gl.getExtension('OES_texture_half_float');supportLinearFiltering=gl.getExtension('OES_texture_half_float_linear');}gl.clearColor(0.0,0.0,0.0,1.0);var halfFloatTexType=isWebGL2?gl.HALF_FLOAT:halfFloat.HALF_FLOAT_OES;var formatRGBA;var formatRG;var formatR;if(isWebGL2){formatRGBA=getSupportedFormat(gl,gl.RGBA16F,gl.RGBA,halfFloatTexType);formatRG=getSupportedFormat(gl,gl.RG16F,gl.RG,halfFloatTexType);formatR=getSupportedFormat(gl,gl.R16F,gl.RED,halfFloatTexType);}else{formatRGBA=getSupportedFormat(gl,gl.RGBA,gl.RGBA,halfFloatTexType);formatRG=getSupportedFormat(gl,gl.RGBA,gl.RGBA,halfFloatTexType);formatR=getSupportedFormat(gl,gl.RGBA,gl.RGBA,halfFloatTexType);}return{gl:gl,ext:{formatRGBA:formatRGBA,formatRG:formatRG,formatR:formatR,halfFloatTexType:halfFloatTexType,supportLinearFiltering:supportLinearFiltering}};}
+        function getSupportedFormat(gl,internalFormat,format,type){if(!supportRenderTextureFormat(gl,internalFormat,format,type)){switch(internalFormat){case gl.R16F:return getSupportedFormat(gl,gl.RG16F,gl.RG,type);case gl.RG16F:return getSupportedFormat(gl,gl.RGBA16F,gl.RGBA,type);default:return null;}}return{internalFormat:internalFormat,format:format};}
+        function supportRenderTextureFormat(gl,internalFormat,format,type){var texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,internalFormat,4,4,0,format,type,null);var fbo=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);var status=gl.checkFramebufferStatus(gl.FRAMEBUFFER);return status==gl.FRAMEBUFFER_COMPLETE;}
+        function isMobile(){return false;}
+        function Material(vertexShader,fragmentShaderSource){this.vertexShader=vertexShader;this.fragmentShaderSource=fragmentShaderSource;this.programs=[];this.activeProgram=null;this.uniforms=[];}
+        Material.prototype.setKeywords=function(keywords){var hash=0;for(var i=0;i<keywords.length;i++)hash+=hashCode(keywords[i]);var program=this.programs[hash];if(program==null){var fragmentShader=compileShader(gl.FRAGMENT_SHADER,this.fragmentShaderSource,keywords);program=createProgram(this.vertexShader,fragmentShader);this.programs[hash]=program;}if(program==this.activeProgram)return;this.uniforms=getUniforms(program);this.activeProgram=program;};
+        Material.prototype.bind=function(){gl.useProgram(this.activeProgram);};
+        function Program(vertexShader,fragmentShader){this.uniforms={};this.program=createProgram(vertexShader,fragmentShader);this.uniforms=getUniforms(this.program);}
+        Program.prototype.bind=function(){gl.useProgram(this.program);};
+        function createProgram(vertexShader,fragmentShader){var program=gl.createProgram();gl.attachShader(program,vertexShader);gl.attachShader(program,fragmentShader);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw gl.getProgramInfoLog(program);return program;}
+        function getUniforms(program){var uniforms=[];var uniformCount=gl.getProgramParameter(program,gl.ACTIVE_UNIFORMS);for(var i=0;i<uniformCount;i++){var uniformName=gl.getActiveUniform(program,i).name;uniforms[uniformName]=gl.getUniformLocation(program,uniformName);}return uniforms;}
+        function compileShader(type,source,keywords){source=addKeywords(source,keywords);var shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS))throw gl.getShaderInfoLog(shader);return shader;}
+        function addKeywords(source,keywords){if(keywords==null)return source;var keywordsString='';keywords.forEach(function(keyword){keywordsString+='#define '+keyword+'\n';});return keywordsString+source;}
+        var baseVertexShader=compileShader(gl.VERTEX_SHADER,"\n    precision highp float;\n    attribute vec2 aPosition;\n    varying vec2 vUv;\n    varying vec2 vL;\n    varying vec2 vR;\n    varying vec2 vT;\n    varying vec2 vB;\n    uniform vec2 texelSize;\n    void main () {\n        vUv = aPosition * 0.5 + 0.5;\n        vL = vUv - vec2(texelSize.x, 0.0);\n        vR = vUv + vec2(texelSize.x, 0.0);\n        vT = vUv + vec2(0.0, texelSize.y);\n        vB = vUv - vec2(0.0, texelSize.y);\n        gl_Position = vec4(aPosition, 0.0, 1.0);\n    }\n");
+        var blurVertexShader=compileShader(gl.VERTEX_SHADER,"\n    precision highp float;\n    attribute vec2 aPosition;\n    varying vec2 vUv;\n    varying vec2 vL;\n    varying vec2 vR;\n    uniform vec2 texelSize;\n    void main () {\n        vUv = aPosition * 0.5 + 0.5;\n        float offset = 1.33333333;\n        vL = vUv - texelSize * offset;\n        vR = vUv + texelSize * offset;\n        gl_Position = vec4(aPosition, 0.0, 1.0);\n    }\n");
+        var blurShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying vec2 vUv;\n    varying vec2 vL;\n    varying vec2 vR;\n    uniform sampler2D uTexture;\n    void main () {\n        vec4 sum = texture2D(uTexture, vUv) * 0.29411764;\n        sum += texture2D(uTexture, vL) * 0.35294117;\n        sum += texture2D(uTexture, vR) * 0.35294117;\n        gl_FragColor = sum;\n    }\n");
+        var copyShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    uniform sampler2D uTexture;\n    void main () {\n        gl_FragColor = texture2D(uTexture, vUv);\n    }\n");
+        var clearShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    uniform sampler2D uTexture;\n    uniform float value;\n    void main () {\n        gl_FragColor = value * texture2D(uTexture, vUv);\n    }\n");
+        var colorShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    uniform vec4 color;\n    void main () {\n        gl_FragColor = color;\n    }\n");
+        var checkerboardShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uTexture;\n    uniform float aspectRatio;\n    #define SCALE 25.0\n    void main () {\n        vec2 uv = floor(vUv * SCALE * vec2(aspectRatio, 1.0));\n        float v = mod(uv.x + uv.y, 2.0);\n        v = v * 0.1 + 0.8;\n        gl_FragColor = vec4(vec3(v), 1.0);\n    }\n");
+        var displayShaderSource="\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    varying vec2 vL;\n    varying vec2 vR;\n    varying vec2 vT;\n    varying vec2 vB;\n    uniform sampler2D uTexture;\n    uniform sampler2D uBloom;\n    uniform sampler2D uSunrays;\n    uniform sampler2D uDithering;\n    uniform vec2 ditherScale;\n    uniform vec2 texelSize;\n    vec3 linearToGamma (vec3 color) {\n        color = max(color, vec3(0));\n        return max(1.055 * pow(color, vec3(0.416666667)) - 0.055, vec3(0));\n    }\n    void main () {\n        vec3 c = texture2D(uTexture, vUv).rgb;\n    #ifdef SHADING\n        vec3 lc = texture2D(uTexture, vL).rgb;\n        vec3 rc = texture2D(uTexture, vR).rgb;\n        vec3 tc = texture2D(uTexture, vT).rgb;\n        vec3 bc = texture2D(uTexture, vB).rgb;\n        float dx = length(rc) - length(lc);\n        float dy = length(tc) - length(bc);\n        vec3 n = normalize(vec3(dx, dy, length(texelSize)));\n        vec3 l = vec3(0.0, 0.0, 1.0);\n        float diffuse = clamp(dot(n, l) + 0.7, 0.7, 1.0);\n        c *= diffuse;\n    #endif\n    #ifdef BLOOM\n        vec3 bloom = texture2D(uBloom, vUv).rgb;\n    #endif\n    #ifdef SUNRAYS\n        float sunrays = texture2D(uSunrays, vUv).r;\n        c *= sunrays;\n    #ifdef BLOOM\n        bloom *= sunrays;\n    #endif\n    #endif\n    #ifdef BLOOM\n        float noise = texture2D(uDithering, vUv * ditherScale).r;\n        noise = noise * 2.0 - 1.0;\n        bloom += noise / 255.0;\n        bloom = linearToGamma(bloom);\n        c += bloom;\n    #endif\n        float a = max(c.r, max(c.g, c.b));\n        gl_FragColor = vec4(c, a);\n    }\n";
+        var bloomPrefilterShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uTexture;\n    uniform vec3 curve;\n    uniform float threshold;\n    void main () {\n        vec3 c = texture2D(uTexture, vUv).rgb;\n        float br = max(c.r, max(c.g, c.b));\n        float rq = clamp(br - curve.x, 0.0, curve.y);\n        rq = curve.z * rq * rq;\n        c *= max(rq, br - threshold) / max(br, 0.0001);\n        gl_FragColor = vec4(c, 0.0);\n    }\n");
+        var bloomBlurShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying vec2 vL;\n    varying vec2 vR;\n    varying vec2 vT;\n    varying vec2 vB;\n    uniform sampler2D uTexture;\n    void main () {\n        vec4 sum = vec4(0.0);\n        sum += texture2D(uTexture, vL);\n        sum += texture2D(uTexture, vR);\n        sum += texture2D(uTexture, vT);\n        sum += texture2D(uTexture, vB);\n        sum *= 0.25;\n        gl_FragColor = sum;\n    }\n");
+        var bloomFinalShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying vec2 vL;\n    varying vec2 vR;\n    varying vec2 vT;\n    varying vec2 vB;\n    uniform sampler2D uTexture;\n    uniform float intensity;\n    void main () {\n        vec4 sum = vec4(0.0);\n        sum += texture2D(uTexture, vL);\n        sum += texture2D(uTexture, vR);\n        sum += texture2D(uTexture, vT);\n        sum += texture2D(uTexture, vB);\n        sum *= 0.25;\n        gl_FragColor = sum * intensity;\n    }\n");
+        var sunraysMaskShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uTexture;\n    void main () {\n        vec4 c = texture2D(uTexture, vUv);\n        float br = max(c.r, max(c.g, c.b));\n        c.a = 1.0 - min(max(br * 20.0, 0.0), 0.8);\n        gl_FragColor = c;\n    }\n");
+        var sunraysShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uTexture;\n    uniform float weight;\n    #define ITERATIONS 16\n    void main () {\n        float Density = 0.3;\n        float Decay = 0.95;\n        float Exposure = 0.7;\n        vec2 coord = vUv;\n        vec2 dir = vUv - 0.5;\n        dir *= 1.0 / float(ITERATIONS) * Density;\n        float illuminationDecay = 1.0;\n        float color = texture2D(uTexture, vUv).a;\n        for (int i = 0; i < ITERATIONS; i++) {\n            coord -= dir;\n            float col = texture2D(uTexture, coord).a;\n            color += col * illuminationDecay * weight;\n            illuminationDecay *= Decay;\n        }\n        gl_FragColor = vec4(color * Exposure, 0.0, 0.0, 1.0);\n    }\n");
+        var splatShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uTarget;\n    uniform float aspectRatio;\n    uniform vec3 color;\n    uniform vec2 point;\n    uniform float radius;\n    void main () {\n        vec2 p = vUv - point.xy;\n        p.x *= aspectRatio;\n        vec3 splat = exp(-dot(p, p) / radius) * color;\n        vec3 base = texture2D(uTarget, vUv).xyz;\n        gl_FragColor = vec4(base + splat, 1.0);\n    }\n");
+        var advectionShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    uniform sampler2D uVelocity;\n    uniform sampler2D uSource;\n    uniform vec2 texelSize;\n    uniform vec2 dyeTexelSize;\n    uniform float dt;\n    uniform float dissipation;\n    vec4 bilerp (sampler2D sam, vec2 uv, vec2 tsize) {\n        vec2 st = uv / tsize - 0.5;\n        vec2 iuv = floor(st);\n        vec2 fuv = fract(st);\n        vec4 a = texture2D(sam, (iuv + vec2(0.5, 0.5)) * tsize);\n        vec4 b = texture2D(sam, (iuv + vec2(1.5, 0.5)) * tsize);\n        vec4 c = texture2D(sam, (iuv + vec2(0.5, 1.5)) * tsize);\n        vec4 d = texture2D(sam, (iuv + vec2(1.5, 1.5)) * tsize);\n        return mix(mix(a, b, fuv.x), mix(c, d, fuv.x), fuv.y);\n    }\n    void main () {\n    #ifdef MANUAL_FILTERING\n        vec2 coord = vUv - dt * bilerp(uVelocity, vUv, texelSize).xy * texelSize;\n        vec4 result = bilerp(uSource, coord, dyeTexelSize);\n    #else\n        vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;\n        vec4 result = texture2D(uSource, coord);\n    #endif\n        float decay = 1.0 + dissipation * dt;\n        gl_FragColor = result / decay;\n    }\n",ext.supportLinearFiltering?null:['MANUAL_FILTERING']);
+        var divergenceShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    varying highp vec2 vL;\n    varying highp vec2 vR;\n    varying highp vec2 vT;\n    varying highp vec2 vB;\n    uniform sampler2D uVelocity;\n    void main () {\n        float L = texture2D(uVelocity, vL).x;\n        float R = texture2D(uVelocity, vR).x;\n        float T = texture2D(uVelocity, vT).y;\n        float B = texture2D(uVelocity, vB).y;\n        vec2 C = texture2D(uVelocity, vUv).xy;\n        if (vL.x < 0.0) { L = -C.x; }\n        if (vR.x > 1.0) { R = -C.x; }\n        if (vT.y > 1.0) { T = -C.y; }\n        if (vB.y < 0.0) { B = -C.y; }\n        float div = 0.5 * (R - L + T - B);\n        gl_FragColor = vec4(div, 0.0, 0.0, 1.0);\n    }\n");
+        var curlShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    varying highp vec2 vL;\n    varying highp vec2 vR;\n    varying highp vec2 vT;\n    varying highp vec2 vB;\n    uniform sampler2D uVelocity;\n    void main () {\n        float L = texture2D(uVelocity, vL).y;\n        float R = texture2D(uVelocity, vR).y;\n        float T = texture2D(uVelocity, vT).x;\n        float B = texture2D(uVelocity, vB).x;\n        float vorticity = R - L - T + B;\n        gl_FragColor = vec4(0.5 * vorticity, 0.0, 0.0, 1.0);\n    }\n");
+        var vorticityShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision highp float;\n    precision highp sampler2D;\n    varying vec2 vUv;\n    varying vec2 vL;\n    varying vec2 vR;\n    varying vec2 vT;\n    varying vec2 vB;\n    uniform sampler2D uVelocity;\n    uniform sampler2D uCurl;\n    uniform float curl;\n    uniform float dt;\n    void main () {\n        float L = texture2D(uCurl, vL).x;\n        float R = texture2D(uCurl, vR).x;\n        float T = texture2D(uCurl, vT).x;\n        float B = texture2D(uCurl, vB).x;\n        float C = texture2D(uCurl, vUv).x;\n        vec2 force = 0.5 * vec2(abs(T) - abs(B), abs(R) - abs(L));\n        force /= length(force) + 0.0001;\n        force *= curl * C;\n        force.y *= -1.0;\n        vec2 vel = texture2D(uVelocity, vUv).xy;\n        gl_FragColor = vec4(vel + force * dt, 0.0, 1.0);\n    }\n");
+        var pressureShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    varying highp vec2 vL;\n    varying highp vec2 vR;\n    varying highp vec2 vT;\n    varying highp vec2 vB;\n    uniform sampler2D uPressure;\n    uniform sampler2D uDivergence;\n    void main () {\n        float L = texture2D(uPressure, vL).x;\n        float R = texture2D(uPressure, vR).x;\n        float T = texture2D(uPressure, vT).x;\n        float B = texture2D(uPressure, vB).x;\n        float C = texture2D(uPressure, vUv).x;\n        float divergence = texture2D(uDivergence, vUv).x;\n        float pressure = (L + R + B + T - divergence) * 0.25;\n        gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);\n    }\n");
+        var gradientSubtractShader=compileShader(gl.FRAGMENT_SHADER,"\n    precision mediump float;\n    precision mediump sampler2D;\n    varying highp vec2 vUv;\n    varying highp vec2 vL;\n    varying highp vec2 vR;\n    varying highp vec2 vT;\n    varying highp vec2 vB;\n    uniform sampler2D uPressure;\n    uniform sampler2D uVelocity;\n    void main () {\n        float L = texture2D(uPressure, vL).x;\n        float R = texture2D(uPressure, vR).x;\n        float T = texture2D(uPressure, vT).x;\n        float B = texture2D(uPressure, vB).x;\n        vec2 velocity = texture2D(uVelocity, vUv).xy;\n        velocity.xy -= vec2(R - L, T - B);\n        gl_FragColor = vec4(velocity, 0.0, 1.0);\n    }\n");
+        var blit=(function(){gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,-1,1,1,1,1,-1]),gl.STATIC_DRAW);gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array([0,1,2,0,2,3]),gl.STATIC_DRAW);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);gl.enableVertexAttribArray(0);return function(destination){gl.bindFramebuffer(gl.FRAMEBUFFER,destination);gl.drawElements(gl.TRIANGLES,6,gl.UNSIGNED_SHORT,0);};})();
+        var dye;var velocity;var divergence;var curl;var pressure;var bloom;var bloomFramebuffers=[];var sunrays;var sunraysTemp;
+        var ditheringTexture=createTextureAsync('assets/LDR_LLL1_0.png');
+        var blurProgram=new Program(blurVertexShader,blurShader);var copyProgram=new Program(baseVertexShader,copyShader);var clearProgram=new Program(baseVertexShader,clearShader);var colorProgram=new Program(baseVertexShader,colorShader);var checkerboardProgram=new Program(baseVertexShader,checkerboardShader);var bloomPrefilterProgram=new Program(baseVertexShader,bloomPrefilterShader);var bloomBlurProgram=new Program(baseVertexShader,bloomBlurShader);var bloomFinalProgram=new Program(baseVertexShader,bloomFinalShader);var sunraysMaskProgram=new Program(baseVertexShader,sunraysMaskShader);var sunraysProgram=new Program(baseVertexShader,sunraysShader);var splatProgram=new Program(baseVertexShader,splatShader);var advectionProgram=new Program(baseVertexShader,advectionShader);var divergenceProgram=new Program(baseVertexShader,divergenceShader);var curlProgram=new Program(baseVertexShader,curlShader);var vorticityProgram=new Program(baseVertexShader,vorticityShader);var pressureProgram=new Program(baseVertexShader,pressureShader);var gradienSubtractProgram=new Program(baseVertexShader,gradientSubtractShader);
+        var displayMaterial=new Material(baseVertexShader,displayShaderSource);
+        function initFramebuffers(){var simRes=getResolution(config.SIM_RESOLUTION);var dyeRes=getResolution(config.DYE_RESOLUTION);var texType=ext.halfFloatTexType;var rgba=ext.formatRGBA;var rg=ext.formatRG;var r=ext.formatR;var filtering=ext.supportLinearFiltering?gl.LINEAR:gl.NEAREST;if(dye==null)dye=createDoubleFBO(dyeRes.width,dyeRes.height,rgba.internalFormat,rgba.format,texType,filtering);else dye=resizeDoubleFBO(dye,dyeRes.width,dyeRes.height,rgba.internalFormat,rgba.format,texType,filtering);if(velocity==null)velocity=createDoubleFBO(simRes.width,simRes.height,rg.internalFormat,rg.format,texType,filtering);else velocity=resizeDoubleFBO(velocity,simRes.width,simRes.height,rg.internalFormat,rg.format,texType,filtering);divergence=createFBO(simRes.width,simRes.height,r.internalFormat,r.format,texType,gl.NEAREST);curl=createFBO(simRes.width,simRes.height,r.internalFormat,r.format,texType,gl.NEAREST);pressure=createDoubleFBO(simRes.width,simRes.height,r.internalFormat,r.format,texType,gl.NEAREST);initBloomFramebuffers();initSunraysFramebuffers();}
+        function initBloomFramebuffers(){var res=getResolution(config.BLOOM_RESOLUTION);var texType=ext.halfFloatTexType;var rgba=ext.formatRGBA;var filtering=ext.supportLinearFiltering?gl.LINEAR:gl.NEAREST;bloom=createFBO(res.width,res.height,rgba.internalFormat,rgba.format,texType,filtering);bloomFramebuffers.length=0;for(var i=0;i<config.BLOOM_ITERATIONS;i++){var width=res.width>>(i+1);var height=res.height>>(i+1);if(width<2||height<2)break;var fbo=createFBO(width,height,rgba.internalFormat,rgba.format,texType,filtering);bloomFramebuffers.push(fbo);}}
+        function initSunraysFramebuffers(){var res=getResolution(config.SUNRAYS_RESOLUTION);var texType=ext.halfFloatTexType;var r=ext.formatR;var filtering=ext.supportLinearFiltering?gl.LINEAR:gl.NEAREST;sunrays=createFBO(res.width,res.height,r.internalFormat,r.format,texType,filtering);sunraysTemp=createFBO(res.width,res.height,r.internalFormat,r.format,texType,filtering);}
+        function createFBO(w,h,internalFormat,format,type,param){gl.activeTexture(gl.TEXTURE0);var texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,param);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,param);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,internalFormat,w,h,0,format,type,null);var fbo=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT);var texelSizeX=1.0/w;var texelSizeY=1.0/h;return{texture:texture,fbo:fbo,width:w,height:h,texelSizeX:texelSizeX,texelSizeY:texelSizeY,attach:function(id){gl.activeTexture(gl.TEXTURE0+id);gl.bindTexture(gl.TEXTURE_2D,texture);return id;}};}
+        function createDoubleFBO(w,h,internalFormat,format,type,param){var fbo1=createFBO(w,h,internalFormat,format,type,param);var fbo2=createFBO(w,h,internalFormat,format,type,param);return{width:w,height:h,texelSizeX:fbo1.texelSizeX,texelSizeY:fbo1.texelSizeY,get read(){return fbo1;},set read(value){fbo1=value;},get write(){return fbo2;},set write(value){fbo2=value;},swap:function(){var temp=fbo1;fbo1=fbo2;fbo2=temp;}};}
+        function resizeFBO(target,w,h,internalFormat,format,type,param){var newFBO=createFBO(w,h,internalFormat,format,type,param);copyProgram.bind();gl.uniform1i(copyProgram.uniforms.uTexture,target.attach(0));blit(newFBO.fbo);return newFBO;}
+        function resizeDoubleFBO(target,w,h,internalFormat,format,type,param){if(target.width==w&&target.height==h)return target;target.read=resizeFBO(target.read,w,h,internalFormat,format,type,param);target.write=createFBO(w,h,internalFormat,format,type,param);target.width=w;target.height=h;target.texelSizeX=1.0/w;target.texelSizeY=1.0/h;return target;}
+        function createTextureAsync(url){var texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.REPEAT);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,1,1,0,gl.RGB,gl.UNSIGNED_BYTE,new Uint8Array([255,255,255]));var obj={texture:texture,width:1,height:1,attach:function(id){gl.activeTexture(gl.TEXTURE0+id);gl.bindTexture(gl.TEXTURE_2D,texture);return id;}};var image=new Image();image.onload=function(){obj.width=image.width;obj.height=image.height;gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);};image.src=url;return obj;}
+        function updateKeywords(){var displayKeywords=[];if(config.SHADING)displayKeywords.push("SHADING");if(config.BLOOM)displayKeywords.push("BLOOM");if(config.SUNRAYS)displayKeywords.push("SUNRAYS");displayMaterial.setKeywords(displayKeywords);}
+        updateKeywords();initFramebuffers();multipleSplats(parseInt(Math.random()*20)+5);
+        var lastUpdateTime=Date.now();var colorUpdateTimer=0.0;update();
+        function update(){var dt=calcDeltaTime();if(resizeCanvas())initFramebuffers();updateColors(dt);applyInputs();if(!config.PAUSED)step(dt);render(null);requestAnimationFrame(update);}
+        function calcDeltaTime(){var now=Date.now();var dt=(now-lastUpdateTime)/1000;dt=Math.min(dt,0.016666);lastUpdateTime=now;return dt;}
+        function resizeCanvas(){var width=scaleByPixelRatio(canvas.clientWidth);var height=scaleByPixelRatio(canvas.clientHeight);if(canvas.width!=width||canvas.height!=height){canvas.width=width;canvas.height=height;return true;}return false;}
+        function updateColors(dt){if(!config.COLORFUL)return;colorUpdateTimer+=dt*config.COLOR_UPDATE_SPEED;if(colorUpdateTimer>=1){colorUpdateTimer=wrap(colorUpdateTimer,0,1);pointers.forEach(function(p){p.color=generateColor();});}}
+        function applyInputs(){if(splatStack.length>0)multipleSplats(splatStack.pop());pointers.forEach(function(p){if(p.moved){p.moved=false;splatPointer(p);}});}
+        function step(dt){gl.disable(gl.BLEND);gl.viewport(0,0,velocity.width,velocity.height);curlProgram.bind();gl.uniform2f(curlProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);gl.uniform1i(curlProgram.uniforms.uVelocity,velocity.read.attach(0));blit(curl.fbo);vorticityProgram.bind();gl.uniform2f(vorticityProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);gl.uniform1i(vorticityProgram.uniforms.uVelocity,velocity.read.attach(0));gl.uniform1i(vorticityProgram.uniforms.uCurl,curl.attach(1));gl.uniform1f(vorticityProgram.uniforms.curl,config.CURL);gl.uniform1f(vorticityProgram.uniforms.dt,dt);blit(velocity.write.fbo);velocity.swap();divergenceProgram.bind();gl.uniform2f(divergenceProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);gl.uniform1i(divergenceProgram.uniforms.uVelocity,velocity.read.attach(0));blit(divergence.fbo);clearProgram.bind();gl.uniform1i(clearProgram.uniforms.uTexture,pressure.read.attach(0));gl.uniform1f(clearProgram.uniforms.value,config.PRESSURE);blit(pressure.write.fbo);pressure.swap();pressureProgram.bind();gl.uniform2f(pressureProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);gl.uniform1i(pressureProgram.uniforms.uDivergence,divergence.attach(0));for(var i=0;i<config.PRESSURE_ITERATIONS;i++){gl.uniform1i(pressureProgram.uniforms.uPressure,pressure.read.attach(1));blit(pressure.write.fbo);pressure.swap();}gradienSubtractProgram.bind();gl.uniform2f(gradienSubtractProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);gl.uniform1i(gradienSubtractProgram.uniforms.uPressure,pressure.read.attach(0));gl.uniform1i(gradienSubtractProgram.uniforms.uVelocity,velocity.read.attach(1));blit(velocity.write.fbo);velocity.swap();advectionProgram.bind();gl.uniform2f(advectionProgram.uniforms.texelSize,velocity.texelSizeX,velocity.texelSizeY);if(!ext.supportLinearFiltering)gl.uniform2f(advectionProgram.uniforms.dyeTexelSize,velocity.texelSizeX,velocity.texelSizeY);var velocityId=velocity.read.attach(0);gl.uniform1i(advectionProgram.uniforms.uVelocity,velocityId);gl.uniform1i(advectionProgram.uniforms.uSource,velocityId);gl.uniform1f(advectionProgram.uniforms.dt,dt);gl.uniform1f(advectionProgram.uniforms.dissipation,config.VELOCITY_DISSIPATION);blit(velocity.write.fbo);velocity.swap();gl.viewport(0,0,dye.width,dye.height);if(!ext.supportLinearFiltering)gl.uniform2f(advectionProgram.uniforms.dyeTexelSize,dye.texelSizeX,dye.texelSizeY);gl.uniform1i(advectionProgram.uniforms.uVelocity,velocity.read.attach(0));gl.uniform1i(advectionProgram.uniforms.uSource,dye.read.attach(1));gl.uniform1f(advectionProgram.uniforms.dissipation,config.DENSITY_DISSIPATION);blit(dye.write.fbo);dye.swap();}
+        function render(target){if(config.BLOOM)applyBloom(dye.read,bloom);if(config.SUNRAYS){applySunrays(dye.read,dye.write,sunrays);blur(sunrays,sunraysTemp,1);}if(target==null||!config.TRANSPARENT){gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.enable(gl.BLEND);}else{gl.disable(gl.BLEND);}var width=target==null?gl.drawingBufferWidth:target.width;var height=target==null?gl.drawingBufferHeight:target.height;gl.viewport(0,0,width,height);var fbo=target==null?null:target.fbo;if(!config.TRANSPARENT)drawColor(fbo,normalizeColor(config.BACK_COLOR));if(target==null&&config.TRANSPARENT)drawCheckerboard(fbo);drawDisplay(fbo,width,height);}
+        function drawColor(fbo,color){colorProgram.bind();gl.uniform4f(colorProgram.uniforms.color,color.r,color.g,color.b,1);blit(fbo);}
+        function drawCheckerboard(fbo){checkerboardProgram.bind();gl.uniform1f(checkerboardProgram.uniforms.aspectRatio,canvas.width/canvas.height);blit(fbo);}
+        function drawDisplay(fbo,width,height){displayMaterial.bind();if(config.SHADING)gl.uniform2f(displayMaterial.uniforms.texelSize,1.0/width,1.0/height);gl.uniform1i(displayMaterial.uniforms.uTexture,dye.read.attach(0));if(config.BLOOM){gl.uniform1i(displayMaterial.uniforms.uBloom,bloom.attach(1));gl.uniform1i(displayMaterial.uniforms.uDithering,ditheringTexture.attach(2));var scale=getTextureScale(ditheringTexture,width,height);gl.uniform2f(displayMaterial.uniforms.ditherScale,scale.x,scale.y);}if(config.SUNRAYS)gl.uniform1i(displayMaterial.uniforms.uSunrays,sunrays.attach(3));blit(fbo);}
+        function applyBloom(source,destination){if(bloomFramebuffers.length<2)return;var last=destination;gl.disable(gl.BLEND);bloomPrefilterProgram.bind();var knee=config.BLOOM_THRESHOLD*config.BLOOM_SOFT_KNEE+0.0001;var curve0=config.BLOOM_THRESHOLD-knee;var curve1=knee*2;var curve2=0.25/knee;gl.uniform3f(bloomPrefilterProgram.uniforms.curve,curve0,curve1,curve2);gl.uniform1f(bloomPrefilterProgram.uniforms.threshold,config.BLOOM_THRESHOLD);gl.uniform1i(bloomPrefilterProgram.uniforms.uTexture,source.attach(0));gl.viewport(0,0,last.width,last.height);blit(last.fbo);bloomBlurProgram.bind();for(var i=0;i<bloomFramebuffers.length;i++){var dest=bloomFramebuffers[i];gl.uniform2f(bloomBlurProgram.uniforms.texelSize,last.texelSizeX,last.texelSizeY);gl.uniform1i(bloomBlurProgram.uniforms.uTexture,last.attach(0));gl.viewport(0,0,dest.width,dest.height);blit(dest.fbo);last=dest;}gl.blendFunc(gl.ONE,gl.ONE);gl.enable(gl.BLEND);for(var i$1=bloomFramebuffers.length-2;i$1>=0;i$1--){var baseTex=bloomFramebuffers[i$1];gl.uniform2f(bloomBlurProgram.uniforms.texelSize,last.texelSizeX,last.texelSizeY);gl.uniform1i(bloomBlurProgram.uniforms.uTexture,last.attach(0));gl.viewport(0,0,baseTex.width,baseTex.height);blit(baseTex.fbo);last=baseTex;}gl.disable(gl.BLEND);bloomFinalProgram.bind();gl.uniform2f(bloomFinalProgram.uniforms.texelSize,last.texelSizeX,last.texelSizeY);gl.uniform1i(bloomFinalProgram.uniforms.uTexture,last.attach(0));gl.uniform1f(bloomFinalProgram.uniforms.intensity,config.BLOOM_INTENSITY);gl.viewport(0,0,destination.width,destination.height);blit(destination.fbo);}
+        function applySunrays(source,mask,destination){gl.disable(gl.BLEND);sunraysMaskProgram.bind();gl.uniform1i(sunraysMaskProgram.uniforms.uTexture,source.attach(0));gl.viewport(0,0,mask.width,mask.height);blit(mask.fbo);sunraysProgram.bind();gl.uniform1f(sunraysProgram.uniforms.weight,config.SUNRAYS_WEIGHT);gl.uniform1i(sunraysProgram.uniforms.uTexture,mask.attach(0));gl.viewport(0,0,destination.width,destination.height);blit(destination.fbo);}
+        function blur(target,temp,iterations){blurProgram.bind();for(var i=0;i<iterations;i++){gl.uniform2f(blurProgram.uniforms.texelSize,target.texelSizeX,0.0);gl.uniform1i(blurProgram.uniforms.uTexture,target.attach(0));blit(temp.fbo);gl.uniform2f(blurProgram.uniforms.texelSize,0.0,target.texelSizeY);gl.uniform1i(blurProgram.uniforms.uTexture,temp.attach(0));blit(target.fbo);}}
+        function splatPointer(pointer){var dx=pointer.deltaX*config.SPLAT_FORCE;var dy=pointer.deltaY*config.SPLAT_FORCE;splat(pointer.texcoordX,pointer.texcoordY,dx,dy,pointer.color);}
+        function multipleSplats(amount){for(var i=0;i<amount;i++){var color=generateColor();color.r*=10.0;color.g*=10.0;color.b*=10.0;var x=Math.random();var y=Math.random();var dx=1000*(Math.random()-0.5);var dy=1000*(Math.random()-0.5);splat(x,y,dx,dy,color);}}
+        function splat(x,y,dx,dy,color){gl.viewport(0,0,velocity.width,velocity.height);splatProgram.bind();gl.uniform1i(splatProgram.uniforms.uTarget,velocity.read.attach(0));gl.uniform1f(splatProgram.uniforms.aspectRatio,canvas.width/canvas.height);gl.uniform2f(splatProgram.uniforms.point,x,y);gl.uniform3f(splatProgram.uniforms.color,dx,dy,0.0);gl.uniform1f(splatProgram.uniforms.radius,correctRadius(config.SPLAT_RADIUS/100.0));blit(velocity.write.fbo);velocity.swap();gl.viewport(0,0,dye.width,dye.height);gl.uniform1i(splatProgram.uniforms.uTarget,dye.read.attach(0));gl.uniform3f(splatProgram.uniforms.color,color.r,color.g,color.b);blit(dye.write.fbo);dye.swap();}
+        function correctRadius(radius){var aspectRatio=canvas.width/canvas.height;if(aspectRatio>1)radius*=aspectRatio;return radius;}
+        canvas.addEventListener('mousedown',function(e){var posX=scaleByPixelRatio(e.offsetX);var posY=scaleByPixelRatio(e.offsetY);var pointer=pointers.find(function(p){return p.id==-1;});if(pointer==null)pointer=new pointerPrototype();updatePointerDownData(pointer,-1,posX,posY);});
+        canvas.addEventListener('mousemove',function(e){var pointer=pointers[0];if(!pointer.down)return;var posX=scaleByPixelRatio(e.offsetX);var posY=scaleByPixelRatio(e.offsetY);updatePointerMoveData(pointer,posX,posY);});
+        window.addEventListener('mouseup',function(){updatePointerUpData(pointers[0]);});
+        canvas.addEventListener('touchstart',function(e){e.preventDefault();var touches=e.targetTouches;while(touches.length>=pointers.length)pointers.push(new pointerPrototype());for(var i=0;i<touches.length;i++){var posX=scaleByPixelRatio(touches[i].pageX);var posY=scaleByPixelRatio(touches[i].pageY);updatePointerDownData(pointers[i+1],touches[i].identifier,posX,posY);}});
+        canvas.addEventListener('touchmove',function(e){e.preventDefault();var touches=e.targetTouches;for(var i=0;i<touches.length;i++){var pointer=pointers[i+1];if(!pointer.down)continue;var posX=scaleByPixelRatio(touches[i].pageX);var posY=scaleByPixelRatio(touches[i].pageY);updatePointerMoveData(pointer,posX,posY);}},false);
+        window.addEventListener('touchend',function(e){var touches=e.changedTouches;for(var i=0;i<touches.length;i++){var pointer=pointers.find(function(p){return p.id==touches[i].identifier;});if(pointer==null)continue;updatePointerUpData(pointer);}});
+        window.addEventListener('keydown',function(e){if(e.code==='KeyP')config.PAUSED=!config.PAUSED;if(e.key===' ')splatStack.push(parseInt(Math.random()*20)+5);});
+        function updatePointerDownData(pointer,id,posX,posY){pointer.id=id;pointer.down=true;pointer.moved=false;pointer.texcoordX=posX/canvas.width;pointer.texcoordY=1.0-posY/canvas.height;pointer.prevTexcoordX=pointer.texcoordX;pointer.prevTexcoordY=pointer.texcoordY;pointer.deltaX=0;pointer.deltaY=0;pointer.color=generateColor();}
+        function updatePointerMoveData(pointer,posX,posY){pointer.prevTexcoordX=pointer.texcoordX;pointer.prevTexcoordY=pointer.texcoordY;pointer.texcoordX=posX/canvas.width;pointer.texcoordY=1.0-posY/canvas.height;pointer.deltaX=correctDeltaX(pointer.texcoordX-pointer.prevTexcoordX);pointer.deltaY=correctDeltaY(pointer.texcoordY-pointer.prevTexcoordY);pointer.moved=Math.abs(pointer.deltaX)>0||Math.abs(pointer.deltaY)>0;}
+        function updatePointerUpData(pointer){pointer.down=false;}
+        function correctDeltaX(delta){var aspectRatio=canvas.width/canvas.height;if(aspectRatio<1)delta*=aspectRatio;return delta;}
+        function correctDeltaY(delta){var aspectRatio=canvas.width/canvas.height;if(aspectRatio>1)delta/=aspectRatio;return delta;}
+        function generateColor(){var c=HSVtoRGB(Math.random(),1.0,1.0);c.r*=0.15;c.g*=0.15;c.b*=0.15;return c;}
+        function HSVtoRGB(h,s,v){var r,g,b,i,f,p,q,t;i=Math.floor(h*6);f=h*6-i;p=v*(1-s);q=v*(1-f*s);t=v*(1-(1-f)*s);switch(i%6){case 0:r=v,g=t,b=p;break;case 1:r=q,g=v,b=p;break;case 2:r=p,g=v,b=t;break;case 3:r=p,g=q,b=v;break;case 4:r=t,g=p,b=v;break;case 5:r=v,g=p,b=q;break;}return{r:r,g:g,b:b};}
+        function normalizeColor(input){return{r:input.r/255,g:input.g/255,b:input.b/255};}
+        function wrap(value,min,max){var range=max-min;if(range==0)return min;return(value-min)%range+min;}
+        function getResolution(resolution){var aspectRatio=gl.drawingBufferWidth/gl.drawingBufferHeight;if(aspectRatio<1)aspectRatio=1.0/aspectRatio;var min=Math.round(resolution);var max=Math.round(resolution*aspectRatio);if(gl.drawingBufferWidth>gl.drawingBufferHeight)return{width:max,height:min};else return{width:min,height:max};}
+        function getTextureScale(texture,width,height){return{x:width/texture.width,y:height/texture.height};}
+        function scaleByPixelRatio(input){var pixelRatio=window.devicePixelRatio||1;return Math.floor(input*pixelRatio);}
+        function hashCode(s){if(s.length==0)return 0;var hash=0;for(var i=0;i<s.length;i++){hash=(hash<<5)-hash+s.charCodeAt(i);hash|=0;}return hash;}
+    })();
+    </script>
 
-      if (typeof content === 'string') {
-        sub.unshift(content)
-      } else if (Array.isArray(content)) {
-        sub.unshift(...content)
-      }
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script>
+    const { createApp, ref, reactive, onMounted, computed } = Vue;
 
-      sub.length > 0 && typedJSFn.init(sub)
-    } else {
-      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
-        (Array.isArray(content) && content.length > 0 ? content[0] : '')
-    }
-  }
-}
-btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
-</script><script>function subtitleType () {
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const from = '出自 ' + data.from
-      typedJSFn.processSubtitle(data.hitokoto, [from])
-    })
-    .catch(err => {
-      console.error('Failed to get the Hitokoto API:', err)
-      typedJSFn.processSubtitle(["热爱技术","热爱生活","持续学习"])
-    })
-}
-typedJSFn.run(subtitleType)
-</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,150,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.5"></script></div></div></body></html>
+    createApp({
+        setup() {
+            const navLinks = ref([
+                { id: 'about', title: '关于' },
+                { id: 'skills', title: '技术栈' },
+                { id: 'projects', title: '项目' },
+                { id: 'experience', title: '经历' },
+                { id: 'contact', title: '联系' }
+            ]);
+
+            const socialLinks = ref([
+                { name: 'GitHub', icon: 'ri-github-fill', url: 'https://github.com/ddxgtx' }
+            ]);
+
+            const about = reactive({
+                intro: '热爱技术，热爱生活。在学习和实践中不断成长，享受用代码解决问题的过程。',
+                cards: [
+                    { icon: 'ri-code-s-slash-fill', title: '编程开发', desc: '热爱编程，享受用代码创造价值的过程' },
+                    { icon: 'ri-lightbulb-fill', title: '持续学习', desc: '保持好奇心，不断探索新技术和新领域' },
+                    { icon: 'ri-heart-fill', title: '热爱生活', desc: '工作之余热爱生活，发现生活中的美好' }
+                ]
+            });
+
+            const skills = ref([
+                {
+                    name: '前端开发', icon: 'ri-layout-fill',
+                    items: [
+                        { name: 'HTML/CSS', level: 85, levelName: '熟练' },
+                        { name: 'JavaScript', level: 80, levelName: '熟练' },
+                        { name: 'Vue', level: 75, levelName: '掌握' },
+                        { name: 'React', level: 65, levelName: '了解' }
+                    ]
+                },
+                {
+                    name: '后端 & 工具', icon: 'ri-server-fill',
+                    items: [
+                        { name: 'Node.js', level: 75, levelName: '掌握' },
+                        { name: 'Python', level: 70, levelName: '掌握' },
+                        { name: 'Git', level: 85, levelName: '熟练' },
+                        { name: 'Docker', level: 60, levelName: '了解' }
+                    ]
+                }
+            ]);
+
+            const projects = ref([
+                {
+                    icon: 'ri-pages-fill', title: '个人博客',
+                    desc: '使用 Hexo + Butterfly 搭建的个人博客，记录学习笔记与生活感悟。',
+                    tags: ['Hexo', 'Butterfly', 'GitHub Pages']
+                },
+                {
+                    icon: 'ri-tools-fill', title: '开源项目',
+                    desc: '参与开源社区，贡献代码，学习优秀的项目设计与实现。',
+                    tags: ['Open Source', 'GitHub', 'Collaboration']
+                }
+            ]);
+
+            const experience = ref([
+                { date: '2026 - 至今', title: '持续学习中', company: '个人成长', desc: '不断学习新技术，提升个人能力' },
+                { date: '2025', title: '开始技术之旅', company: '自学编程', desc: '开启编程学习之路，探索技术世界' }
+            ]);
+
+            const stats = ref([
+                { value: '1+', label: '年学习经验' },
+                { value: '10+', label: '技术博客' },
+                { value: '5+', label: '个人项目' },
+                { value: '∞', label: '学习热情' }
+            ]);
+
+            const typedText = ref('');
+            const hitokoto = ref('代码如诗，人生如歌。');
+            const poetry = ref('路漫漫其修远兮，吾将上下而求索。');
+
+            const visibleSections = reactive({
+                about: false, skills: false, projects: false,
+                experience: false, stats: false, poetry: false
+            });
+
+            const typeWriter = () => {
+                const texts = ['热爱技术', '热爱生活', 'Stay Hungry, Stay Foolish', 'Code is Poetry'];
+                let textIndex = 0, charIndex = 0, isDeleting = false;
+                const type = () => {
+                    const current = texts[textIndex];
+                    typedText.value = isDeleting ? current.substring(0, --charIndex) : current.substring(0, ++charIndex);
+                    if (!isDeleting && charIndex === current.length) { setTimeout(type, 2000); isDeleting = true; return; }
+                    if (isDeleting && charIndex === 0) { isDeleting = false; textIndex = (textIndex + 1) % texts.length; }
+                    setTimeout(type, isDeleting ? 35 : 75);
+                };
+                type();
+            };
+
+            const initParticles = () => {
+                const canvas = document.getElementById('particles');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                resize();
+                window.addEventListener('resize', resize);
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.vx = (Math.random() - 0.5) * 0.4;
+                        this.vy = (Math.random() - 0.5) * 0.4;
+                        this.r = Math.random() * 2 + 1;
+                        this.color = Math.random() > 0.5 ? '88, 166, 255' : '163, 113, 247';
+                    }
+                    update() {
+                        this.x += this.vx; this.y += this.vy;
+                        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(${this.color}, 0.6)`; ctx.fill();
+                    }
+                }
+
+                const count = Math.min(60, Math.floor(canvas.width * canvas.height / 20000));
+                for (let i = 0; i < count; i++) particles.push(new Particle());
+
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const d = Math.sqrt(dx * dx + dy * dy);
+                            if (d < 120) {
+                                ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(88, 166, 255, ${0.3 - d / 400})`;
+                                ctx.lineWidth = 0.6; ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            };
+
+            const initScrollObserver = () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const id = entry.target.id;
+                        if (id && visibleSections.hasOwnProperty(id)) {
+                            visibleSections[id] = entry.isIntersecting;
+                        }
+                    });
+                }, { threshold: 0.15 });
+                document.querySelectorAll('.section').forEach(section => observer.observe(section));
+            };
+
+            const initNavbar = () => {
+                const navbar = document.getElementById('navbar');
+                const landing = document.getElementById('landing');
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY;
+                    const landingHeight = landing.offsetHeight;
+                    if (scrollY > landingHeight * 0.8) {
+                        navbar.classList.add('visible');
+                    } else {
+                        navbar.classList.remove('visible');
+                    }
+                });
+            };
+
+            const loadExternalData = () => {
+                fetch('https://v1.hitokoto.cn')
+                    .then(r => r.json())
+                    .then(d => { hitokoto.value = d.hitokoto + ' —— ' + (d.from || ''); })
+                    .catch(() => {});
+            };
+
+            onMounted(() => {
+                typeWriter();
+                initParticles();
+                initScrollObserver();
+                initNavbar();
+                loadExternalData();
+            });
+
+            return {
+                navLinks, socialLinks, about, skills, projects,
+                experience, stats, typedText, hitokoto, poetry, visibleSections
+            };
+        }
+    }).mount('#app');
+    </script>
+</body>
+</html>
