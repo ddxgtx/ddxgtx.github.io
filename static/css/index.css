@@ -124,14 +124,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 2.5rem;
+    color: #fff;
     animation: bounceArrow 2s ease-in-out infinite;
     pointer-events: none;
+    text-shadow: 0 0 20px rgba(88, 166, 255, 0.8), 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 100;
 }
 @keyframes bounceArrow {
-    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
-    50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+    50% { transform: translateX(-50%) translateY(15px); opacity: 1; }
 }
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
