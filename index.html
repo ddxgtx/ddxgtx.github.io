@@ -550,16 +550,41 @@
             const initScrollArrow = () => {
                 const arrow = document.createElement('div');
                 arrow.id = 'scrollArrow';
-                arrow.innerHTML = '<i class="ri-arrow-down-line"></i>';
-                arrow.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);font-size:3rem;color:#fff;animation:bounceArrow 2s ease-in-out infinite;pointer-events:none;text-shadow:0 0 30px rgba(88,166,255,0.9),0 0 60px rgba(88,166,255,0.5);z-index:99999;mix-blend-mode:normal;';
+                arrow.innerHTML = `
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+                        <div style="width:24px;height:40px;border:2px solid rgba(255,255,255,0.5);border-radius:12px;position:relative;">
+                            <div style="width:4px;height:8px;background:#fff;border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scrollDot 2s ease-in-out infinite;"></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;align-items:center;animation:bounceArrow 2s ease-in-out infinite;">
+                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.7);margin:-6px;"></i>
+                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.4);margin:-6px;"></i>
+                            <i class="ri-arrow-down-s-line" style="font-size:1.5rem;color:rgba(255,255,255,0.2);margin:-6px;"></i>
+                        </div>
+                    </div>
+                `;
+                arrow.style.cssText = 'position:fixed;bottom:50px;left:50%;transform:translateX(-50%);z-index:99999;pointer-events:none;mix-blend-mode:normal;';
                 document.body.appendChild(arrow);
+
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes scrollDot {
+                        0% { top: 8px; opacity: 1; }
+                        100% { top: 22px; opacity: 0; }
+                    }
+                    @keyframes bounceArrow {
+                        0%, 100% { transform: translateY(0); opacity: 0.5; }
+                        50% { transform: translateY(8px); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
 
                 const landing = document.getElementById('landing');
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > landing.offsetHeight * 0.3) {
-                        arrow.style.display = 'none';
+                        arrow.style.opacity = '0';
+                        arrow.style.transition = 'opacity 0.5s';
                     } else {
-                        arrow.style.display = 'block';
+                        arrow.style.opacity = '1';
                     }
                 });
             };
