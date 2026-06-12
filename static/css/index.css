@@ -119,20 +119,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
 }
-.scroll-arrow {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 3rem;
-    color: #fff;
-    animation: bounceArrow 2s ease-in-out infinite;
-    pointer-events: none;
-    text-shadow: 0 0 30px rgba(88, 166, 255, 0.9), 0 0 60px rgba(88, 166, 255, 0.5), 0 2px 4px rgba(0,0,0,0.5);
-    z-index: 99999;
-    display: block;
-    mix-blend-mode: normal;
-}
 @keyframes bounceArrow {
     0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
     50% { transform: translateX(-50%) translateY(15px); opacity: 1; }

@@ -34,11 +34,6 @@
         </div>
     </section>
 
-    <!-- Scroll Arrow -->
-    <div class="scroll-arrow" id="scrollArrow">
-        <i class="ri-arrow-down-line"></i>
-    </div>
-
     <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
     <div id="app">
         <div class="app-container">
@@ -552,6 +547,23 @@
                 document.querySelectorAll('.section').forEach(section => observer.observe(section));
             };
 
+            const initScrollArrow = () => {
+                const arrow = document.createElement('div');
+                arrow.id = 'scrollArrow';
+                arrow.innerHTML = '<i class="ri-arrow-down-line"></i>';
+                arrow.style.cssText = 'position:fixed;bottom:40px;left:50%;transform:translateX(-50%);font-size:3rem;color:#fff;animation:bounceArrow 2s ease-in-out infinite;pointer-events:none;text-shadow:0 0 30px rgba(88,166,255,0.9),0 0 60px rgba(88,166,255,0.5);z-index:99999;mix-blend-mode:normal;';
+                document.body.appendChild(arrow);
+
+                const landing = document.getElementById('landing');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > landing.offsetHeight * 0.3) {
+                        arrow.style.display = 'none';
+                    } else {
+                        arrow.style.display = 'block';
+                    }
+                });
+            };
+
             const initNavbar = () => {
                 const navbar = document.getElementById('navbar');
                 const landing = document.getElementById('landing');
@@ -582,6 +594,7 @@
                 typeWriter();
                 initScrollObserver();
                 initNavbar();
+                initScrollArrow();
                 loadExternalData();
             });
 
