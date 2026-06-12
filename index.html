@@ -32,11 +32,13 @@
                 </a>
             </div>
         </div>
-        <div class="scroll-hint" id="scrollHint">
-            <span>Scroll Down</span>
-            <i class="ri-arrow-down-line"></i>
-        </div>
     </section>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">SCROLL</span>
+    </div>
 
     <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
     <div id="app">
@@ -554,13 +556,16 @@
             const initNavbar = () => {
                 const navbar = document.getElementById('navbar');
                 const landing = document.getElementById('landing');
+                const scrollIndicator = document.getElementById('scrollIndicator');
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
                     const landingHeight = landing.offsetHeight;
-                    if (scrollY > landingHeight * 0.8) {
+                    if (scrollY > landingHeight * 0.3) {
                         navbar.classList.add('visible');
+                        scrollIndicator.classList.add('hidden');
                     } else {
                         navbar.classList.remove('visible');
+                        scrollIndicator.classList.remove('hidden');
                     }
                 });
             };
