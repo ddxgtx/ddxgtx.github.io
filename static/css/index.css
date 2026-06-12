@@ -120,11 +120,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
 }
 .scroll-indicator {
-    position: absolute;
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%);
-    z-index: 10;
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
     transition: opacity 0.5s;
 }
 .scroll-indicator.hidden {
