@@ -77,6 +77,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     display: flex;
     justify-content: center;
     gap: 1rem;
+    pointer-events: auto;
 }
 .landing-link {
     width: 44px;
