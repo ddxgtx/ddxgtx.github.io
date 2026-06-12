@@ -43,41 +43,54 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     display: block;
     z-index: 0;
 }
-.landing-content {
+.wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    color: #fff;
+    pointer-events: none;
+    text-align: center;
+    mix-blend-mode: difference;
+    z-index: 10;
+}
+.main {
     position: absolute;
     top: 25%;
     left: 0;
     right: 0;
-    text-align: center;
-    pointer-events: none;
-    animation: fadeUp 1s ease-out;
-    mix-blend-mode: difference;
 }
-.landing-title {
-    font-size: 8rem;
-    font-weight: 700;
+.wrap h1 {
     color: #fff;
-    margin-bottom: 0.5rem;
-    letter-spacing: 4px;
-    animation: glitch 0.5s linear infinite;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 8em;
+    animation: animate 0.5s linear infinite;
+    margin: 0;
 }
-@keyframes glitch {
+.wrap h2 {
+    font-size: 1.3rem;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    font-weight: 400;
+}
+@keyframes animate {
     0%, 100% { text-shadow: -1.5px -1.5px 0 #0ff, 1.5px 1.5px 0 #f00; }
     25% { text-shadow: 1.5px 1.5px 0 #0ff, -1.5px -1.5px 0 #f00; }
     50% { text-shadow: 1.5px -1.5px 0 #0ff, 1.5px -1.5px 0 #f00; }
     75% { text-shadow: -1.5px 1.5px 0 #0ff, -1.5px 1.5px 0 #f00; }
-}
-.landing-subtitle {
-    font-size: 1.3rem;
-    color: #fff;
-    letter-spacing: 2px;
-    margin-bottom: 1.5rem;
 }
 .landing-links {
     display: flex;
     justify-content: center;
     gap: 1rem;
     pointer-events: auto;
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    right: 0;
 }
 .landing-link {
     width: 44px;
@@ -93,10 +106,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     font-size: 1.3rem;
     transition: all 0.3s;
 }
-}
 .landing-link:hover {
     background: var(--accent);
     border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
+}
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(88, 166, 255, 0.3);
 }
@@ -521,7 +536,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 }
 @media (max-width: 768px) {
     html { font-size: 14px; }
-    .landing-title { font-size: 4.5rem; }
+    .wrap h1 { font-size: 4.5rem; }
     .landing-subtitle { font-size: 1rem; }
     .navbar { padding: 0.7rem 1.2rem; }
     .nav-links { display: none; }
@@ -534,6 +549,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 }
 @media (max-width: 480px) {
     html { font-size: 13px; }
-    .landing-title { font-size: 3rem; }
+    .wrap h1 { font-size: 3rem; }
     .tech-item { grid-template-columns: 110px 1fr 40px; }
 }
