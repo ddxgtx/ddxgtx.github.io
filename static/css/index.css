@@ -124,12 +124,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #fff;
     animation: bounceArrow 2s ease-in-out infinite;
     pointer-events: none;
-    text-shadow: 0 0 20px rgba(88, 166, 255, 0.8), 0 2px 4px rgba(0,0,0,0.5);
-    z-index: 9999;
+    text-shadow: 0 0 30px rgba(88, 166, 255, 0.9), 0 0 60px rgba(88, 166, 255, 0.5), 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 99999;
+    display: block;
 }
 @keyframes bounceArrow {
     0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
