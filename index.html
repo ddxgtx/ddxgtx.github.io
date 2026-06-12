@@ -38,8 +38,6 @@
 
     <!-- ===== Section 2: Personal Content (wexuo style) ===== -->
     <div id="app">
-        <canvas id="particles"></canvas>
-
         <div class="app-container">
             <!-- Navbar (appears after scroll) -->
             <nav class="navbar" id="navbar">
@@ -372,9 +370,6 @@
         function updateKeywords(){var displayKeywords=[];if(config.SHADING)displayKeywords.push("SHADING");if(config.BLOOM)displayKeywords.push("BLOOM");if(config.SUNRAYS)displayKeywords.push("SUNRAYS");displayMaterial.setKeywords(displayKeywords);}
         updateKeywords();initFramebuffers();multipleSplats(parseInt(Math.random()*20)+5);
 
-        // Auto splat: periodically add new ink effects
-        setInterval(function(){ multipleSplats(parseInt(Math.random()*5)+2); }, 3000);
-
         var lastUpdateTime=Date.now();var colorUpdateTimer=0.0;update();
         function update(){var dt=calcDeltaTime();if(resizeCanvas())initFramebuffers();updateColors(dt);applyInputs();if(!config.PAUSED)step(dt);render(null);requestAnimationFrame(update);}
         function calcDeltaTime(){var now=Date.now();var dt=(now-lastUpdateTime)/1000;dt=Math.min(dt,0.016666);lastUpdateTime=now;return dt;}
@@ -542,59 +537,6 @@
                 type();
             };
 
-            const initParticles = () => {
-                const canvas = document.getElementById('particles');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let particles = [];
-                const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-                resize();
-                window.addEventListener('resize', resize);
-
-                class Particle {
-                    constructor() {
-                        this.x = Math.random() * canvas.width;
-                        this.y = Math.random() * canvas.height;
-                        this.vx = (Math.random() - 0.5) * 0.4;
-                        this.vy = (Math.random() - 0.5) * 0.4;
-                        this.r = Math.random() * 2 + 1;
-                        this.color = Math.random() > 0.5 ? '88, 166, 255' : '163, 113, 247';
-                    }
-                    update() {
-                        this.x += this.vx; this.y += this.vy;
-                        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-                    }
-                    draw() {
-                        ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(${this.color}, 0.6)`; ctx.fill();
-                    }
-                }
-
-                const count = Math.min(60, Math.floor(canvas.width * canvas.height / 20000));
-                for (let i = 0; i < count; i++) particles.push(new Particle());
-
-                const animate = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    particles.forEach(p => { p.update(); p.draw(); });
-                    for (let i = 0; i < particles.length; i++) {
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const dx = particles[i].x - particles[j].x;
-                            const dy = particles[i].y - particles[j].y;
-                            const d = Math.sqrt(dx * dx + dy * dy);
-                            if (d < 120) {
-                                ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
-                                ctx.lineTo(particles[j].x, particles[j].y);
-                                ctx.strokeStyle = `rgba(88, 166, 255, ${0.3 - d / 400})`;
-                                ctx.lineWidth = 0.6; ctx.stroke();
-                            }
-                        }
-                    }
-                    requestAnimationFrame(animate);
-                };
-                animate();
-            };
-
             const initScrollObserver = () => {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -630,7 +572,6 @@
 
             onMounted(() => {
                 typeWriter();
-                initParticles();
                 initScrollObserver();
                 initNavbar();
                 loadExternalData();
