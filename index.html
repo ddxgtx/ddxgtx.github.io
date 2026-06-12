@@ -102,10 +102,13 @@
                     <span class="section-line"></span>
                 </div>
                 <div class="projects-grid">
-                    <div v-for="project in projects" :key="project.title" class="project-card">
+                    <div v-for="project in projects" :key="project.title" class="project-card" @click="project.link && window.open(project.link, '_blank')">
                         <div class="project-header">
                             <i :class="project.icon"></i>
                             <h3>{{ project.title }}</h3>
+                            <span v-if="project.stars" class="project-stars">
+                                <i class="ri-star-fill"></i> {{ project.stars }}
+                            </span>
                         </div>
                         <p class="project-desc">{{ project.desc }}</p>
                         <div class="project-tags">
@@ -315,58 +318,69 @@
             ]);
 
             const about = reactive({
-                intro: '热爱技术，热爱生活。在学习和实践中不断成长，享受用代码解决问题的过程。',
+                intro: '热爱技术，热爱生活。专注于桌面应用开发、Chrome 扩展开发和 AI 应用。GitHub Pro 用户，开源爱好者。',
                 cards: [
-                    { icon: 'ri-code-s-slash-fill', title: '编程开发', desc: '热爱编程，享受用代码创造价值的过程' },
-                    { icon: 'ri-lightbulb-fill', title: '持续学习', desc: '保持好奇心，不断探索新技术和新领域' },
-                    { icon: 'ri-heart-fill', title: '热爱生活', desc: '工作之余热爱生活，发现生活中的美好' }
+                    { icon: 'ri-steam-fill', title: '桌面开发', desc: '精通 C# / .NET / WPF，开发了 Steam 多账号管理工具 SteamSwitch' },
+                    { icon: 'ri-chrome-fill', title: '浏览器扩展', desc: 'Chrome Extension 开发，AI-JobHunter 智能求职助手' },
+                    { icon: 'ri-robot-fill', title: 'AI 应用', desc: '将 AI 技术应用于实际工具，集成 OpenAI / DeepSeek API' }
                 ]
             });
 
             const skills = ref([
                 {
-                    name: '前端开发', icon: 'ri-layout-fill',
+                    name: '编程语言', icon: 'ri-code-s-fill',
                     items: [
-                        { name: 'HTML/CSS', level: 85, levelName: '熟练' },
-                        { name: 'JavaScript', level: 80, levelName: '熟练' },
-                        { name: 'Vue', level: 75, levelName: '掌握' },
-                        { name: 'React', level: 65, levelName: '了解' }
+                        { name: 'C#', level: 90, levelName: '精通' },
+                        { name: 'JavaScript', level: 85, levelName: '熟练' },
+                        { name: 'Python', level: 75, levelName: '掌握' },
+                        { name: 'HTML/CSS', level: 80, levelName: '熟练' }
                     ]
                 },
                 {
-                    name: '后端 & 工具', icon: 'ri-server-fill',
+                    name: '技术栈', icon: 'ri-tools-fill',
                     items: [
-                        { name: 'Node.js', level: 75, levelName: '掌握' },
-                        { name: 'Python', level: 70, levelName: '掌握' },
+                        { name: '.NET / WPF', level: 90, levelName: '精通' },
+                        { name: 'Chrome Extension', level: 85, levelName: '熟练' },
                         { name: 'Git', level: 85, levelName: '熟练' },
-                        { name: 'Docker', level: 60, levelName: '了解' }
+                        { name: 'AI API 集成', level: 80, levelName: '熟练' }
                     ]
                 }
             ]);
 
             const projects = ref([
                 {
-                    icon: 'ri-pages-fill', title: '个人博客',
-                    desc: '使用 Hexo + Butterfly 搭建的个人博客，记录学习笔记与生活感悟。',
-                    tags: ['Hexo', 'Butterfly', 'GitHub Pages']
+                    icon: 'ri-steam-fill', title: 'SteamSwitch',
+                    desc: '一站式 Steam 多账号管理工具。支持快速切换账号、游戏绑定、任务栏常驻、桌面悬浮窗、Steam 库界面注入。',
+                    tags: ['C#', '.NET 8.0', 'WPF', 'Win32 API'],
+                    link: 'https://github.com/ddxgtx/SteamSwitch',
+                    stars: '26'
                 },
                 {
-                    icon: 'ri-tools-fill', title: '开源项目',
-                    desc: '参与开源社区，贡献代码，学习优秀的项目设计与实现。',
-                    tags: ['Open Source', 'GitHub', 'Collaboration']
+                    icon: 'ri-chrome-fill', title: 'AI-JobHunter',
+                    desc: '智能求职助手 Chrome 扩展。支持 7 大招聘平台，基于 JD 自动生成个性化话术，AI 智能填写简历、面试准备。',
+                    tags: ['JavaScript', 'Chrome Extension', 'AI', 'OpenAI'],
+                    link: 'https://github.com/ddxgtx/AI-JobHunter',
+                    stars: '4'
+                },
+                {
+                    icon: 'ri-brain-fill', title: 'ATCA',
+                    desc: 'CVPR 2024 论文实现 - Hourglass Tokenizer for Efficient Transformer-Based 3D Human Pose Estimation。',
+                    tags: ['Python', 'PyTorch', 'Computer Vision', 'CVPR'],
+                    link: 'https://github.com/ddxgtx/ATCA',
+                    stars: ''
                 }
             ]);
 
             const experience = ref([
-                { date: '2026 - 至今', title: '持续学习中', company: '个人成长', desc: '不断学习新技术，提升个人能力' },
-                { date: '2025', title: '开始技术之旅', company: '自学编程', desc: '开启编程学习之路，探索技术世界' }
+                { date: '2024 - 至今', title: '开源项目开发者', company: 'GitHub', desc: '维护 SteamSwitch、AI-JobHunter 等开源项目，累计 30+ Stars' },
+                { date: '2024', title: 'CVPR 论文复现', company: '学术研究', desc: '复现 CVPR 2024 论文 Hourglass Tokenizer，3D 人体姿态估计' }
             ]);
 
             const stats = ref([
-                { value: '1+', label: '年学习经验' },
-                { value: '10+', label: '技术博客' },
-                { value: '5+', label: '个人项目' },
-                { value: '∞', label: '学习热情' }
+                { value: '4', label: '开源项目' },
+                { value: '30+', label: 'GitHub Stars' },
+                { value: '101', label: 'Starred 项目' },
+                { value: '3', label: 'Followers' }
             ]);
 
             const typedText = ref('');
@@ -379,7 +393,7 @@
             });
 
             const typeWriter = () => {
-                const texts = ['热爱技术', '热爱生活', 'Stay Hungry, Stay Foolish', 'Code is Poetry'];
+                const texts = ['SteamSwitch 开发者', 'AI-JobHunter 作者', 'Love Technology', 'Open Source Enthusiast'];
                 let textIndex = 0, charIndex = 0, isDeleting = false;
                 const type = () => {
                     const current = texts[textIndex];

@@ -223,11 +223,20 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     border-radius: var(--radius);
     padding: 1.1rem;
     transition: all 0.25s;
+    cursor: pointer;
 }
 .project-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
 .project-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.55rem; }
 .project-header i { color: var(--accent-secondary); font-size: 1.1rem; }
-.project-header h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+.project-header h3 { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); flex: 1; }
+.project-stars {
+    font-size: 0.78rem;
+    color: #f0c040;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.project-stars i { font-size: 0.85rem; }
 .project-desc { color: var(--text-muted); font-size: 0.82rem; margin-bottom: 0.7rem; line-height: 1.65; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .project-tags span {
