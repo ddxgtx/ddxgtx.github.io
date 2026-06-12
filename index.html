@@ -364,11 +364,12 @@
             ]);
 
             const about = reactive({
-                intro: '沈阳建筑大学电子信息（计算机技术）硕士，2027届应届生。深耕计算机视觉与深度学习领域，熟练掌握 YOLO 目标检测、SMPL 人体建模、RAG 智能问答等核心技术。多次获得国家级竞赛一等奖，具备扎实的算法研究与工程落地能力。',
+                intro: '沈阳建筑大学电子信息（计算机技术）硕士，2027届应届生。深耕计算机视觉与深度学习领域，熟练掌握 YOLO 目标检测、Dlib 人脸关键点检测、2D-to-3D Lifting、SMPL 参数化人体建模等核心算法。在学术研究方面，参与国家重点研发计划课题，研究从单目图像到3D人体姿态的估计方法；在工程实践方面，熟练使用 Linux/Docker 开发环境，精通 Proxmox VE 虚拟化集群部署与运维。多次获得国家级竞赛一等奖，具备扎实的算法研究与工程落地能力。',
                 cards: [
-                    { icon: 'ri-brain-fill', title: '深度学习', desc: '深耕计算机视觉，熟练掌握 YOLO、Dlib、SMPL 等核心算法' },
-                    { icon: 'ri-code-s-fill', title: '编程开发', desc: '精通 Python，熟练 C++/Java，具备全栈开发能力' },
-                    { icon: 'ri-award-fill', title: '竞赛获奖', desc: '国家一等奖 2 项，省级奖项 4 项，CCF 大模型能力认证' }
+                    { icon: 'ri-brain-fill', title: '深度学习 & CV', desc: '深耕计算机视觉，熟练掌握 YOLO 系列目标检测、Dlib 人脸关键点检测、2D-to-3D Lifting、SMPL 参数化人体建模等核心算法' },
+                    { icon: 'ri-code-s-fill', title: '编程开发', desc: '精通 Python，熟练掌握 C++/Java，熟悉 Linux 常用命令与项目部署流程，具备全栈开发能力' },
+                    { icon: 'ri-server-fill', title: '工程部署', desc: '熟练使用 Linux/Docker 开发环境，精通 Proxmox VE 虚拟化集群部署与运维，具备完整项目部署能力' },
+                    { icon: 'ri-award-fill', title: '竞赛获奖', desc: '国家一等奖 2 项，省级奖项 4 项，LMCC（CCF大模型能力认证）二级，优秀学生奖学金' }
                 ]
             });
 
@@ -404,38 +405,38 @@
 
             const projects = ref([
                 {
-                    icon: 'ri-eye-fill', title: '异常行为检测与预警系统',
-                    desc: '基于深度学习的驾驶员车内异常行为实时检测系统。完成模型训练、优化与部署，实现多种异常行为的精准识别与及时预警。',
-                    tags: ['Python', 'YOLO', 'Deep Learning', 'OpenCV'],
+                    icon: 'ri-eye-fill', title: '基于深度学习的异常行为检测与预警系统',
+                    desc: '针对驾驶员车内异常行为检测场景，设计并实现基于深度学习的实时检测系统。完成模型训练、优化与部署，实现对多种异常行为（如疲劳驾驶、分心驾驶、打电话等）的精准识别与及时预警。系统采用 YOLO 系列目标检测算法，结合 OpenCV 图像处理，实现了毫秒级实时检测。',
+                    tags: ['Python', 'YOLO', 'Deep Learning', 'OpenCV', 'PyTorch'],
                     link: '',
                     stars: ''
                 },
                 {
-                    icon: 'ri-body-scan-fill', title: '3D人体姿态估计与数字人重建',
-                    desc: '参与国家重点研发计划课题，研究单目图像到3D人体姿态估计方法，结合SMPL参数化人体模型实现数字人重建完整流程。',
-                    tags: ['Python', 'PyTorch', 'SMPL', '3D Vision'],
+                    icon: 'ri-body-scan-fill', title: '3D人体姿态估计与数字人重建研究',
+                    desc: '参与国家重点研发计划课题，研究从单目图像到3D人体姿态的估计方法。结合 SMPL 参数化人体模型，实现数字人重建的完整流程。采用 2D-to-3D Lifting 方法，通过 2D 关键点检测提升 3D 姿态估计精度，为虚拟现实和数字人应用提供技术支持。',
+                    tags: ['Python', 'PyTorch', 'SMPL', '3D Vision', 'Transformer'],
                     link: 'https://github.com/ddxgtx/ATCA',
                     stars: ''
                 },
                 {
-                    icon: 'ri-chat-search-fill', title: 'RAG企业知识库智能问答助手',
-                    desc: '基于LangChain框架构建RAG核心流程，实现企业内部文档的智能检索与精准问答，提升知识获取效率。',
-                    tags: ['Python', 'LangChain', 'RAG', 'LLM'],
+                    icon: 'ri-chat-search-fill', title: '基于RAG的企业内部知识库智能问答助手',
+                    desc: '基于 LangChain 框架构建 RAG（检索增强生成）核心流程，实现企业内部文档的智能检索与精准问答。系统支持多种文档格式导入，通过向量化检索和大语言模型结合，显著提升知识获取效率，降低企业内部信息查询成本。',
+                    tags: ['Python', 'LangChain', 'RAG', 'LLM', 'Vector DB'],
                     link: '',
                     stars: ''
                 },
                 {
-                    icon: 'ri-steam-fill', title: 'SteamSwitch',
-                    desc: '一站式Steam多账号管理工具，支持快速切换账号、游戏绑定、任务栏常驻、桌面悬浮窗、Steam库界面注入。',
-                    tags: ['C#', '.NET 8.0', 'WPF', 'Win32 API'],
+                    icon: 'ri-steam-fill', title: 'SteamSwitch - Steam 多账号管理工具',
+                    desc: '一站式 Steam 多账号管理工具，支持快速切换账号、游戏绑定、任务栏常驻、桌面悬浮窗、Steam 库界面注入等功能。采用 .NET 8.0 + WPF 开发，集成 Win32 API 实现系统级功能，已累计获得 26 个 GitHub Stars。',
+                    tags: ['C#', '.NET 8.0', 'WPF', 'Win32 API', 'VDF'],
                     link: 'https://github.com/ddxgtx/SteamSwitch',
                     stars: '26'
                 }
             ]);
 
             const experience = ref([
-                { date: '2024.09 - 2027.06', title: '电子信息（计算机技术）硕士', company: '沈阳建筑大学', desc: '深耕计算机视觉与深度学习研究，参与国家重点研发计划课题' },
-                { date: '2020.09 - 2024.06', title: '计算机科学与技术 本科', company: '沈阳建筑大学', desc: '多次获得国家级竞赛一等奖，获优秀学生奖学金' }
+                { date: '2024.09 - 2027.06', title: '电子信息（计算机技术）硕士', company: '沈阳建筑大学', desc: '研究方向：计算机视觉与深度学习。参与国家重点研发计划课题，研究从单目图像到3D人体姿态的估计方法，结合SMPL参数化人体模型实现数字人重建。主修课程：深度学习、计算机视觉、模式识别、数字图像处理。' },
+                { date: '2020.09 - 2024.06', title: '计算机科学与技术 本科', company: '沈阳建筑大学', desc: '主修课程：数据结构、算法设计、操作系统、计算机网络、数据库原理、软件工程。多次参加国家级学科竞赛并获奖，获优秀学生奖学金。积极参与开源项目，培养了扎实的编程基础和工程能力。' }
             ]);
 
             const stats = ref([
